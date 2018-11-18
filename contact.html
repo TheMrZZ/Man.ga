@@ -7,8 +7,8 @@
     <title>Man.ga - Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Florian Ernst">
-    <meta name="description" content="Man.ga register page - register to Man.ga to get more features.">
-    <meta name="keywords" content="Man.ga,manga,mangas,register,signup,sign-up">
+    <meta name="description" content="Man.ga contact page - contact the creator of the website.">
+    <meta name="keywords" content="Man.ga,manga,mangas,contact,message">
 </head>
 
 <body>
@@ -28,27 +28,23 @@
 
     <main>
         <header>
-            <h1>Register</h1>
+            <h1>Contact Us</h1>
         </header>
 
         <form>
-            <label>Username:
-                <input type="text" name="username" placeholder="JohnDoe" required /><br />
-            </label>
-
             <label>Email:
                 <input type="email" name="email" placeholder="john@doe.com" required /><br />
             </label>
 
-            <label>Password
-                <input type="password" name="password" required /><br />
+            <label>Subject:
+                <input type="text" name="subject" placeholder="Can you add other mangas ?" required /><br />
             </label>
 
-            <label>Confirm password:
-                <input type="password" name="password2" required /><br />
+            <label>Content:
+                <textarea name="content" rows=10 cols=30 placeholder="Your message here" required></textarea><br />
             </label>
 
-            <input type="submit" value="Register">
+            <input type="submit" value="send">
         </form>
     </main>
 

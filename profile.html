@@ -13,14 +13,18 @@
 
 <body>
     <header>
-        <a href="home-not-logged-in.html">
+        <a href="home-logged-in.html">
             <h1>Man.ga</h1>
         </a>
         <form>
             <input type="search" placeholder="Search a manga...">
             <button type="submit"><img src="images/loupe.svg" width="15" alt="Click to search"></button>
         </form>
-        <a href="login.html">Login</a> / <a href="register.html">Register</a>
+        <a href="profile.html"><img src="images/profile.svg" width=20 alt="Access to your profile" /></a><br />
+        <input type="button" name="sign out" value="sign out" onclick="window.location.href='home-not-logged-in.html'"><br />
+        <a href="manga-list.html">
+            Manga list
+        </a>
     </header>
 
     <main>
@@ -29,7 +33,34 @@
         </header>
 
         <p>Username: JohnDoe</p>
+
+        <form>
+
+            <label>Current password
+                <input type="password" name="current" required /><br />
+            </label>
+
+            <label>New password
+                <input type="password" name="new" required /><br />
+            </label>
+
+            <label>Confirm password:
+                <input type="password" name="confirmation" required /><br />
+            </label>
+
+            <input type="submit" value="confirm">
+        </form>
+
         <p>Email: john@doe.com</p>
+
+        <form>
+
+            <label>New Email
+                <input type="email" name="email" required /><br />
+            </label>
+
+            <input type="submit" value="confirm">
+        </form>
 
         
     </main>
@@ -39,3 +70,5 @@
         <a href="contact.html">Contact us</a>
     </footer>
 </body>
+
+</html>
