@@ -31,8 +31,7 @@
         <header>
             <h2>Filters</h2>
         </header>
-
-        <form>
+        <form method="GET">
             <label>Types<br />
                 <select name="type" multiple>
                     <option value="shonen">Shonen</option>
@@ -72,8 +71,7 @@
 
             <label for="status-completed">Completed</label>
             <input type="radio" name="status" id="status-completed" value="Completed">
-            <br />
-            <br />
+            <br /><br />
 
             <p>Rating<br />
                 At least <input type="number" min=0 max=10 value=0> stars
@@ -99,10 +97,10 @@
             <h2>Manga List</h2>
             <form>
                 <label>Sort by &nbsp;
-                    <select>
-                        <option name="sort" value="Popularity">Popularity</option>
-                        <option name="sort" value="Number of votes">Number of votes</option>
-                        <option name="sort" value="Date">Date</option>
+                    <select name="sort">
+                        <option value="popularity">Popularity</option>
+                        <option value="votes">Number of votes</option>
+                        <option value="data">Date of last update</option>
                     </select>
                 </label>
             </form>
