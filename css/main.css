@@ -1,0 +1,34 @@
+/* Declare variables for easier use */
+:root {
+  --primary-color: #fcfcfc;
+  --secondary-color: #e8e8e8;
+  --font-color: #707070;
+}
+
+html,
+body {
+  background-color: var(--secondary-color);
+  color: var(--font-color);
+}
+
+main {
+  padding-top: 10px;
+}
+
+.navbar {
+  background-color: var(--primary-color);
+}
+
+.nav-item {
+  margin: auto 0;
+  vertical-align: middle;
+}
+
+.nav-item a {
+  color: var(--font-color);
+}
+
+.navbar-brand {
+  font-size: 2em;
+  margin-top: -8px;
+}

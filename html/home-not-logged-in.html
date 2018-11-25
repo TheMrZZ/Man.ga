@@ -1,81 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Man.ga - Home</title>
-	<link href="../css/main.css" rel="stylesheet" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Florian Ernst">
-    <meta name="description" content="Man.ga home page - see the most popular mangas, and the recently udpates ones.">
-    <meta name="keywords" content="Man.ga,manga,mangas,One Piece,Fairy Tale,Tower of God,Shingeki No Kyojin,Attack On Titan,information">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <link href="../css/home.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Florian Ernst" />
+    <meta
+      name="description"
+      content="Man.ga home page - see the most popular mangas, and the recently udpates ones."
+    />
+    <meta
+      name="keywords"
+      content="Man.ga,manga,mangas,One Piece,Fairy Tale,Tower of God,Shingeki No Kyojin,Attack On Titan,information"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <a href="home-not-logged-in.html">
-            <h1>Man.ga</h1>
-        </a>
-        <form>
-            <input type="search" placeholder="Search a manga...">
-            <button type="submit"><img src="../images/loupe.svg" width="15" alt="Click to search"></button>
-        </form>
-        <a href="login.html">Login</a> / <a href="register.html">Register</a><br />
-        <a href="manga-list.html">
-            Manga list
-        </a>
+      <nav class="navbar navbar-expand-sm main-nav fixed-top">
+        <div class="container-fluid justify-content-center">
+          <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
+            <li class="nav-item active">
+              <a class="navbar-brand" href="home-not-logged-in.html">Man.ga</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manga-list.html">Manga list</a>
+            </li>
+          </ul>
+          <div class="nav navbar-nav flex-fill justify-content-center">
+            <form class="form-inline" action="manga-list.html" method="GET">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search a manga..."
+                aria-label="Search"
+                name="search"
+              />
+            </form>
+          </div>
+          <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <main>
-        <header>
-            <h1>Home</h1>
-        </header>
-        <section>
-            <header>
-                <h2>Most popular</h2>
-            </header>
-            <ol>
-                <li>
-                    <h3>One Piece</h3>
-                    <a href="manga-information.html"><img src="../images/one-piece.png" width="100" alt="One Piece cover"></a>
-                </li>
-                <li>
-                    <h3>Shingeki No Kyojin - Attack on Titan</h3>
-                    <a href="manga-information.html"><img src="../images/attack-on-titan.jpg" width="100" alt="Fairy Tail cover"></a>
-                </li>
-                <li>
-                    <h3>Tower of God</h3>
-                    <a href="manga-information.html"><img src="../images/tower-of-god.jpg" width="100" alt="Tower of God cover"></a>
-                </li>
-            </ol>
-        </section>
+      <header><h1>Home</h1></header>
+      <section>
+        <header><h2>Most popular</h2></header>
+        <ol>
+          <li>
+            <h3>One Piece</h3>
+            <a href="manga-information.html"
+              ><img
+                src="../images/one-piece.png"
+                width="100"
+                alt="One Piece cover"
+            /></a>
+          </li>
+          <li>
+            <h3>Shingeki No Kyojin - Attack on Titan</h3>
+            <a href="manga-information.html"
+              ><img
+                src="../images/attack-on-titan.jpg"
+                width="100"
+                alt="Fairy Tail cover"
+            /></a>
+          </li>
+          <li>
+            <h3>Tower of God</h3>
+            <a href="manga-information.html"
+              ><img
+                src="../images/tower-of-god.jpg"
+                width="100"
+                alt="Tower of God cover"
+            /></a>
+          </li>
+        </ol>
+      </section>
 
-        <section>
-            <header>
-                <h2>Recently updated</h2>
-            </header>
-            <ol>
-                <li>
-                    <h3>Tower of God</h3>
-                    <a href="manga-information.html"><img src="../images/tower-of-god.jpg" width="100" alt="Tower of God cover"></a>
-                </li>
-                <li>
-                    <h3>One Piece</h3>
-                    <a href="manga-information.html"><img src="../images/one-piece.png" width="100" alt="One Piece cover"></a>
-                </li>
-                <li>
-                    <h3>Fairy Tail</h3>
-                    <a href="manga-information.html"><img src="../images/fairy-tail.png" width="100" alt="Fairy Tail cover"></a>
-                </li>
-            </ol>
-        </section>
+      <section>
+        <header><h2>Recently updated</h2></header>
+        <ol>
+          <li>
+            <h3>Tower of God</h3>
+            <a href="manga-information.html"
+              ><img
+                src="../images/tower-of-god.jpg"
+                width="100"
+                alt="Tower of God cover"
+            /></a>
+          </li>
+          <li>
+            <h3>One Piece</h3>
+            <a href="manga-information.html"
+              ><img
+                src="../images/one-piece.png"
+                width="100"
+                alt="One Piece cover"
+            /></a>
+          </li>
+          <li>
+            <h3>Fairy Tail</h3>
+            <a href="manga-information.html"
+              ><img
+                src="../images/fairy-tail.png"
+                width="100"
+                alt="Fairy Tail cover"
+            /></a>
+          </li>
+        </ol>
+      </section>
     </main>
 
     <footer>
-        <a href="info.html">What is Man.ga?</a>
-        <a href="contact.html">Contact us</a>
+      <a href="info.html">What is Man.ga?</a>
+      <a href="contact.html">Contact us</a>
     </footer>
-</body>
 
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
