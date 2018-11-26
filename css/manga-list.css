@@ -1,0 +1,18 @@
+/* Declare variables for easier use */
+:root {
+  --primary-color: #fcfcfc;
+  --secondary-color: #e8e8e8;
+  --font-color: #707070;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main > nav {
+  flex-basis: 25%;
+}

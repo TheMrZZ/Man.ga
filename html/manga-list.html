@@ -2,187 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Man.ga - One Piece</title>
-	<link href="../css/main.css" rel="stylesheet" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Florian Ernst">
-    <meta name="description" content="Man.ga manga list - discover, rate and choose mangas in our informative list.">
-    <meta name="keywords" content="Man.ga,manga,mangas,list,discover,rate,choose,informative">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Man.ga - One Piece</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous" />
+  <link href="../css/main.css" rel="stylesheet" type="text/css" />
+  <link href="../css/manga-list.css" rel="stylesheet" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Florian Ernst">
+  <meta name="description" content="Man.ga manga list - discover, rate and choose mangas in our informative list.">
+  <meta name="keywords" content="Man.ga,manga,mangas,list,discover,rate,choose,informative">
 </head>
 
 <body>
-    <header>
-        <a href="home-logged-in.html">
-            <h1>Man.ga</h1>
-        </a>
-        <form>
-            <input type="search" placeholder="Search a manga...">
-            <button type="submit"><img src="../images/loupe.svg" width="15" alt="Click to search"></button>
-        </form>
-        <a href="profile.html"><img src="../images/profile.svg" width="20" alt="Access to your profile" /></a><br />
-        <input type="button" name="sign out" value="sign out" onclick="window.location.href='home-not-logged-in.html'"><br />
-        <a href="manga-list.html">
-            Manga list
-        </a>
-    </header>
+  <header>
+    <a href="home-logged-in.html">
+      <h1>Man.ga</h1>
+    </a>
+    <form>
+      <input type="search" placeholder="Search a manga...">
+      <button type="submit"><img src="../images/loupe.svg" width="15" alt="Click to search"></button>
+    </form>
+    <a href="profile.html"><img src="../images/profile.svg" width="20" alt="Access to your profile" /></a><br />
+    <input type="button" name="sign out" value="sign out" onclick="window.location.href='home-not-logged-in.html'"><br />
+    <a href="manga-list.html">
+      Manga list
+    </a>
+  </header>
 
+  <div class="main">
     <nav>
-        <header>
-            <h2>Filters</h2>
-        </header>
-        <form method="GET">
-            <label>Types<br />
-                <select name="type" multiple>
-                    <option value="shonen">Shonen</option>
-                    <option value="shojo">Shojo</option>
-                    <option value="seinen">Seinen</option>
-                    <option value="josei">Josei</option>
-                    <option value="kodomomuke">Kodomomuke</option>
-                </select>
-            </label>
-            <br /><br />
+      <header>
+        <h2>Filters</h2>
+      </header>
+      <form method="GET">
+        <label>Types<br />
+          <select name="type" multiple>
+            <option value="shonen">Shonen</option>
+            <option value="shojo">Shojo</option>
+            <option value="seinen">Seinen</option>
+            <option value="josei">Josei</option>
+            <option value="kodomomuke">Kodomomuke</option>
+          </select>
+        </label>
+        <br /><br />
 
-            <label>Genres<br />
-                <select name="genre" multiple>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="drama">Drama</option>
-                    <option value="slice-of-life">Slice of Life</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="magic">Magic</option>
-                    <option value="supernatural">Supernatural</option>
-                    <option value="horror">Horror</option>
-                    <option value="mystery">Mystery</option>
-                    <option value="psychological">Psychological</option>
-                    <option value="romance">Romance</option>
-                    <option value="scifi">SciFi</option>
-                </select>
-            </label>
-            <br /><br />
+        <label>Genres<br />
+          <select name="genre" multiple>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="slice-of-life">Slice of Life</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="magic">Magic</option>
+            <option value="supernatural">Supernatural</option>
+            <option value="horror">Horror</option>
+            <option value="mystery">Mystery</option>
+            <option value="psychological">Psychological</option>
+            <option value="romance">Romance</option>
+            <option value="scifi">SciFi</option>
+          </select>
+        </label>
+        <br /><br />
 
-            <p>Status</p>
-            <label for="status-all">All</label>
-            <input type="radio" name="status" id="status-all" value="all"><br />
+        <p>Status</p>
+        <label for="status-all">All</label>
+        <input type="radio" name="status" id="status-all" value="all"><br />
 
-            <label for="status-ongoing">Ongoig</label>
-            <input type="radio" name="status" id="status-ongoing" value="Ongoing"><br />
+        <label for="status-ongoing">Ongoig</label>
+        <input type="radio" name="status" id="status-ongoing" value="Ongoing"><br />
 
-            <label for="status-completed">Completed</label>
-            <input type="radio" name="status" id="status-completed" value="Completed">
-            <br /><br />
+        <label for="status-completed">Completed</label>
+        <input type="radio" name="status" id="status-completed" value="Completed">
+        <br /><br />
 
-            <p>Rating<br />
-                At least <input type="number" min="0" max="10" value="0"> stars
-            </p>
+        <p>Rating<br />
+          At least <input type="number" min="0" max="10" value="0"> stars
+        </p>
 
-            <p>Favorites</p>
-            <label for="favorite-all">All:</label>
-            <input type="radio" name="favorite" id="favorite-all" value="all"><br />
+        <p>Favorites</p>
+        <label for="favorite-all">All:</label>
+        <input type="radio" name="favorite" id="favorite-all" value="all"><br />
 
-            <label for="favorite-only">Favorites Only</label>
-            <input type="radio" name="favorite" id="favorite-only" value="only"><br />
+        <label for="favorite-only">Favorites Only</label>
+        <input type="radio" name="favorite" id="favorite-only" value="only"><br />
 
-            <label for="favorite-none">Hide Favorites</label>
-            <input type="radio" name="favorite" id="favorite-none" value="none">
-            <br />
+        <label for="favorite-none">Hide Favorites</label>
+        <input type="radio" name="favorite" id="favorite-none" value="none">
+        <br />
 
-            <button type="submit">Search</button>
-        </form>
+        <button type="submit">Search</button>
+      </form>
     </nav>
 
     <main>
-        <header>
-            <h2>Manga List</h2>
-            <form>
-                <label>Sort by &nbsp;
-                    <select name="sort">
-                        <option value="popularity">Popularity</option>
-                        <option value="votes">Number of votes</option>
-                        <option value="data">Date of last update</option>
-                    </select>
-                </label>
-            </form>
-        </header>
+      <header>
+        <h2>Manga List</h2>
+        <form>
+          <label>Sort by &nbsp;
+            <select name="sort">
+              <option value="popularity">Popularity</option>
+              <option value="votes">Number of votes</option>
+              <option value="data">Date of last update</option>
+            </select>
+          </label>
+        </form>
+      </header>
 
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Manga</th>
-                    <th>Category</th>
-                    <th>Rating</th>
-                    <th>Last Updated</th>
-                    <th>&star;</th>
-                </tr>
-            </thead>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">Manga</th>
+            <th>Category</th>
+            <th>Rating</th>
+            <th>Last Updated</th>
+            <th>&star;</th>
+          </tr>
+        </thead>
 
-            <tbody>
-                <tr>
-                    <td><a href="manga-information.html"><img src="../images/one-piece.png" alt="One Piece cover" width="100"></a></td>
-                    <td>
-                        <p>One Piece</p>
-                        <p>925 chapters</p>
-                    </td>
-                    <td>
-                        <p>Shonen</p>
-                        <p>Action, Adventure, Fantasy</p>
-                    </td>
-                    <td> &star; 9.07 </td>
-                    <td> 9 hours ago</td>
-                    <td style="color:yellow"> &starf; </td>
-                </tr>
-                <tr>
-                    <td><img src="../images/attack-on-titan.jpg" alt="Attack on Titan cover" width="100"></td>
-                    <td>
-                        <p>Shingeki No Kyojin - Attack on Titan</p>
-                        <p>542 chapters</p>
-                    </td>
-                    <td>
-                        <p>Seinen</p>
-                        <p>Action, Horror, Fantasy</p>
-                    </td>
-                    <td> &star; 8.56 </td>
-                    <td> 2 days ago</td>
-                    <td> &star; </td>
-                </tr>
-                <tr>
-                    <td><img src="../images/tower-of-god.jpg" alt="Tower of God cover" width="100"></td>
-                    <td>
-                        <p>Tower of God</p>
-                        <p>650 chapters</p>
-                    </td>
-                    <td>
-                        <p>Shonen</p>
-                        <p>Action, Fantasy, Magic, Mystery</p>
-                    </td>
-                    <td> &star; 7.3 </td>
-                    <td> 1 week ago</td>
-                    <td style="color:yellow"> &starf; </td>
-                </tr>
-                <tr>
-                    <td><img src="../images/fairy-tail.png" alt="Fairy Tail cover" width="100"></td>
-                    <td>
-                        <p>Fairy Tail</p>
-                        <p>12 chapters</p>
-                    </td>
-                    <td>
-                        <p>Shojo</p>
-                        <p>Comedy, Fantasy, Magic, Romance</p>
-                    </td>
-                    <td> &star; 4.2 </td>
-                    <td> 1 year ago</td>
-                    <td> &star; </td>
-                </tr>
-            </tbody>
-        </table>
+        <tbody>
+          <tr>
+            <td><a href="manga-information.html"><img src="../images/one-piece.png" alt="One Piece cover" width="100"></a></td>
+            <td>
+              <p>One Piece</p>
+              <p>925 chapters</p>
+            </td>
+            <td>
+              <p>Shonen</p>
+              <p>Action, Adventure, Fantasy</p>
+            </td>
+            <td> &star; 9.07 </td>
+            <td> 9 hours ago</td>
+            <td style="color:yellow"> &starf; </td>
+          </tr>
+          <tr>
+            <td><img src="../images/attack-on-titan.jpg" alt="Attack on Titan cover" width="100"></td>
+            <td>
+              <p>Shingeki No Kyojin - Attack on Titan</p>
+              <p>542 chapters</p>
+            </td>
+            <td>
+              <p>Seinen</p>
+              <p>Action, Horror, Fantasy</p>
+            </td>
+            <td> &star; 8.56 </td>
+            <td> 2 days ago</td>
+            <td> &star; </td>
+          </tr>
+          <tr>
+            <td><img src="../images/tower-of-god.jpg" alt="Tower of God cover" width="100"></td>
+            <td>
+              <p>Tower of God</p>
+              <p>650 chapters</p>
+            </td>
+            <td>
+              <p>Shonen</p>
+              <p>Action, Fantasy, Magic, Mystery</p>
+            </td>
+            <td> &star; 7.3 </td>
+            <td> 1 week ago</td>
+            <td style="color:yellow"> &starf; </td>
+          </tr>
+          <tr>
+            <td><img src="../images/fairy-tail.png" alt="Fairy Tail cover" width="100"></td>
+            <td>
+              <p>Fairy Tail</p>
+              <p>12 chapters</p>
+            </td>
+            <td>
+              <p>Shojo</p>
+              <p>Comedy, Fantasy, Magic, Romance</p>
+            </td>
+            <td> &star; 4.2 </td>
+            <td> 1 year ago</td>
+            <td> &star; </td>
+          </tr>
+        </tbody>
+      </table>
     </main>
+  </div>
 
-    <footer>
-        <a href="info.html">What is Man.ga?</a>
-        <a href="contact.html">Contact us</a>
-    </footer>
+  <footer>
+    <a href="info.html">What is Man.ga?</a>
+    <a href="contact.html">Contact us</a>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
