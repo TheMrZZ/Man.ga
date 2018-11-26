@@ -7,7 +7,9 @@
 
 html,
 body {
-  background-color: var(--secondary-color);
+  background: linear-gradient(to right bottom,rgba(245, 159, 102, 0.479), rgba(132, 238, 252, 0.726)) fixed, linear-gradient(to right top,rgba(255, 251, 0, 0.274), rgba(255, 0, 149, 0.397)) fixed;
+  /*background-color: var(--secondary-color);*/
+  background-size: contain;
   color: var(--font-color);
 }
 
@@ -50,13 +52,4 @@ main {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
-}
-
-.star::before {
-  content: "☆";
-}
-
-.starf::before {
-  content: "★";
-  color: rgb(241, 241, 0);
 }

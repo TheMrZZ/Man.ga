@@ -1,0 +1,133 @@
+
+
+
+
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
+form.sign {
+    width: 60%;
+    margin: 60px auto;
+    max-width: 700px;
+    min-width: 500px;
+    background: #ffffff;
+    padding: 60px 120px 80px 120px;
+    text-align: center;
+    -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  }
+  label {
+    display: block;
+    position: relative;
+    margin: 40px 0px;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+  
+  .line-box {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: #BCBCBC;
+  }
+  
+  .line {
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgb(48, 48, 48);
+    transition: ease .6s;
+  }
+  
+  input:focus + .line-box .line {
+    width: 100%;
+  }
+  
+  .label-txt {
+    position: absolute;
+    top: -1.6em;
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: .8em;
+    letter-spacing: 1px;
+    color: rgb(120,120,120);
+    transition: ease .3s;
+  }
+  
+  .label-active {
+    top: -3em;
+  }
+  
+  button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgb(220,220,220);
+    font-weight: bold;
+    color: rgb(120,120,120);
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: ease .3s;
+  }
+  
+  button:hover {
+    background: rgb(92, 92, 92);
+    color: #ffffff;
+  }
+  
+  div.link
+  {
+    text-align: center;
+    margin-top: -50px
+  }
+  
+  a.link, p.link
+  {
+    color: rgb(120,120,120);
+  }
+  
+  h6 > a {
+    position: relative;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  h6 > a:hover {
+    color: rgb(65, 65, 65);
+  }
+  
+  h6 > a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -1px;
+    left: 0;
+    background-color: rgb(65, 65, 65);
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  
+  h6 > a:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+
+  .icon
+  {
+    width: 150px;
+    margin-top: -140px;
+  }

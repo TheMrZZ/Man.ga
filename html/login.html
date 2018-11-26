@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Man.ga - Login</title>
-	<link href="../css/main.css" rel="stylesheet" type="text/css">
+	<link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link href="../css/form.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <link href="../css/home.css" rel="stylesheet" type="text/css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Florian Ernst">
     <meta name="description" content="Man.ga login page - login to Man.ga to get more features.">
@@ -14,46 +24,123 @@
 
 <body>
     <header>
-        <a href="home-not-logged-in.html">
-            <h1>Man.ga</h1>
-        </a>
-        <form>
-            <input type="search" placeholder="Search a manga...">
-            <button type="submit"><img src="../images/loupe.svg" width="15" alt="Click to search"></button>
-        </form>
-        <a href="login.html">Login</a> / <a href="register.html">Register</a><br />
-        <a href="manga-list.html">
-            Manga list
-        </a>
+      <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
+        <a class="navbar-brand" href="home-not-logged-in.html">Man.ga</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse flex-fill w-100 flex-nowrap"
+          id="navbarSupportedContent"
+        >
+          <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
+            <li class="nav-item">
+              <a class="nav-link" href="manga-list.html">Manga list</a>
+            </li>
+          </ul>
+          <div
+            class="searchbar nav navbar-nav flex-fill justify-content-center"
+          >
+            <form class="form-inline" action="manga-list.html" method="GET">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Search a manga..."
+                aria-label="Search"
+                name="search"
+              />
+            </form>
+          </div>
+          <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
-
     <main>
-        <header>
-            <h1>Login</h1>
-        </header>
-
-        <form>
-            <label>Username / Email:
-                <input type="text" name="username-email" placeholder="JohnDoe / john@doe.com" required /><br />
+               
+        <form class="sign">
+            <img class="icon" src="../icon/user.svg"/>
+            <h1 class="login">Login</h1>
+            <label>
+              <p class="label-txt">ENTER YOUR USERNAME/EMAIL</p>
+              <input type="text" class="input" name="username-email" autocomplete="off" required />
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
             </label>
-
-            <label>Password:
-                <input type="password" name="password" required /><br />
+            <label>
+              <p class="label-txt">ENTER YOUR PASSWORD</p>
+              <input type="password" class="input" name="password" autocomplete="off" required />
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
             </label>
-
-            <input type="submit" value="Login" />
-        </form>
-
-        <p>
-            <a href="forgot-password.html">Forgot password</a><br>
-            <a href="register.html">No account? Create one here</a>
-        </p>
-    </main>
-
+            <button type="submit" name="login">submit</button>
+            
+          </form>
+            <div class="link">
+                <p class="link">
+                    <h6>
+                        <a class="link" href="forgot-password.html">Forgot password ?</a>
+                        /
+                        <a class="link" href="register.html">No account ? Create one here</a>
+                    </h6>
+                </p>
+            </div>
+    </main> 
     <footer>
         <a href="info.html">What is Man.ga?</a>
         <a href="contact.html">Contact us</a>
     </footer>
+
+    <script>
+            $(document).ready(function()
+            {
+                $('input').focus(function()
+                {
+                    $(this).parent().find(".label-txt").addClass('label-active');
+                });
+                $("input").focusout(function()
+                {
+                    if ($(this).val() == '') 
+                    {
+                        $(this).parent().find(".label-txt").removeClass('label-active');
+                    };
+                });
+
+            });
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 </body>
 
 </html>
