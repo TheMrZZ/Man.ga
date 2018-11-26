@@ -5,6 +5,7 @@
   --font-color: #707070;
 }
 
+/* Sections should go in columns */
 main {
   width: 100%;
   display: inline-flex;
@@ -13,6 +14,7 @@ main {
   align-items: center;
 }
 
+/* Sections are wrapped in a blank rectangle with smooth borders */
 section {
   margin-top: 30px;
   padding: 10px;
@@ -51,8 +53,44 @@ section h2 {
   padding-left: 30px;
 }
 
+/* Key and values should be on the same line. Example: "Author  Eichiiro Oda"
+instead of 
+"Author
+Eichiiro Oda" */
 .information-panel dt {
   float: left;
   clear: left;
   padding-right: 10px;
+}
+
+/* Average rating and Number of votes should appear side by side */
+dd > p {
+  display: inline;
+}
+
+.comments {
+  list-style: none;
+  padding: 0;
+}
+
+.comment {
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.comment > * {
+  padding: 5px;
+}
+
+.comment-header {
+  border-collapse: collapse;
+  border-bottom: 1px solid black;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.comment p {
+  margin: 0;
 }

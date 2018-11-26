@@ -51,3 +51,12 @@ main {
     transform: translateX(-50%);
   }
 }
+
+.star::before {
+  content: "☆";
+}
+
+.starf::before {
+  content: "★";
+  color: rgb(241, 241, 0);
+}
