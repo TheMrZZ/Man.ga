@@ -53,3 +53,8 @@ main {
     transform: translateX(-50%);
   }
 }
+
+.nav-icon {
+  width: 10px;
+  height: 10px;
+}
