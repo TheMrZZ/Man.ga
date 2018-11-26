@@ -12,7 +12,7 @@ body {
 }
 
 main {
-  padding-top: 10px;
+  padding-top: 75px;
 }
 
 .navbar {
@@ -31,4 +31,23 @@ main {
 .navbar-brand {
   font-size: 2em;
   margin-top: -8px;
+}
+
+.searchbar * {
+  text-align: center;
+}
+
+/* Don't center the search bar for tablets & smartphones (it's in the burger menu) */
+.searchbar {
+  position: relative;
+}
+
+/* Center it for large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .searchbar {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 }

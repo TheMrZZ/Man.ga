@@ -13,7 +13,7 @@ main {
   align-items: center;
 }
 
-.manga-display {
+section {
   margin-top: 30px;
   padding: 10px;
   border: 1px solid transparent;
@@ -24,27 +24,35 @@ main {
   background-color: var(--primary-color);
 }
 
-.manga-list {
-  width: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-}
-
-.manga-list li {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  align-self: flex-start;
-  margin-left: 10px;
-  margin-right: 10px;
+section h2 {
   text-align: center;
-  flex-basis: 0;
 }
 
-.manga-list img {
-  width: 150px;
+/* On mobile, cover first then information */
+.manga-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* On large devices (desktops, 992px and up),
+ * cover on the left and info on the right */
+@media screen and (min-width: 992px) {
+  .manga-wrapper {
+    flex-direction: row;
+  }
+}
+
+.manga-wrapper img {
+  align-self: center;
+  width: 20em;
+}
+
+.information-panel {
+  padding-left: 30px;
+}
+
+.information-panel dt {
+  float: left;
+  clear: left;
+  padding-right: 10px;
 }

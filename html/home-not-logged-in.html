@@ -26,17 +26,32 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm main-nav fixed-top">
-        <div class="container-fluid justify-content-center">
+      <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
+        <a class="navbar-brand" href="home-not-logged-in.html">Man.ga</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse flex-fill w-100 flex-nowrap"
+          id="navbarSupportedContent"
+        >
           <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
-            <li class="nav-item active">
-              <a class="navbar-brand" href="home-not-logged-in.html">Man.ga</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="manga-list.html">Manga list</a>
             </li>
           </ul>
-          <div class="nav navbar-nav flex-fill justify-content-center">
+          <div
+            class="searchbar nav navbar-nav flex-fill justify-content-center"
+          >
             <form class="form-inline" action="manga-list.html" method="GET">
               <input
                 class="form-control mr-sm-2"
@@ -61,67 +76,73 @@
 
     <main>
       <header><h1>Home</h1></header>
-      <section>
+      <section class="manga-display">
         <header><h2>Most popular</h2></header>
-        <ol>
+        <ol class="manga-list">
           <li>
             <h3>One Piece</h3>
             <a href="manga-information.html"
-              ><img
-                src="../images/one-piece.png"
-                width="100"
-                alt="One Piece cover"
+              ><img src="../images/one-piece.png" alt="One Piece cover"
             /></a>
           </li>
           <li>
             <h3>Shingeki No Kyojin - Attack on Titan</h3>
             <a href="manga-information.html"
-              ><img
-                src="../images/attack-on-titan.jpg"
-                width="100"
-                alt="Fairy Tail cover"
+              ><img src="../images/attack-on-titan.jpg" alt="Fairy Tail cover"
             /></a>
           </li>
           <li>
             <h3>Tower of God</h3>
             <a href="manga-information.html"
-              ><img
-                src="../images/tower-of-god.jpg"
-                width="100"
-                alt="Tower of God cover"
+              ><img src="../images/tower-of-god.jpg" alt="Tower of God cover"
+            /></a>
+          </li>
+          <li>
+            <h3>Shingeki No Kyojin</h3>
+            <a href="manga-information.html"
+              ><img src="../images/attack-on-titan.jpg" alt="Fairy Tail cover"
+            /></a>
+          </li>
+          <li>
+            <h3>Tower of God</h3>
+            <a href="manga-information.html"
+              ><img src="../images/tower-of-god.jpg" alt="Tower of God cover"
             /></a>
           </li>
         </ol>
       </section>
 
-      <section>
+      <section class="manga-display">
         <header><h2>Recently updated</h2></header>
-        <ol>
+        <ol class="manga-list">
           <li>
             <h3>Tower of God</h3>
             <a href="manga-information.html"
-              ><img
-                src="../images/tower-of-god.jpg"
-                width="100"
-                alt="Tower of God cover"
+              ><img src="../images/tower-of-god.jpg" alt="Tower of God cover"
             /></a>
           </li>
           <li>
             <h3>One Piece</h3>
             <a href="manga-information.html"
-              ><img
-                src="../images/one-piece.png"
-                width="100"
-                alt="One Piece cover"
+              ><img src="../images/one-piece.png" alt="One Piece cover"
             /></a>
           </li>
           <li>
             <h3>Fairy Tail</h3>
             <a href="manga-information.html"
-              ><img
-                src="../images/fairy-tail.png"
-                width="100"
-                alt="Fairy Tail cover"
+              ><img src="../images/fairy-tail.png" alt="Fairy Tail cover"
+            /></a>
+          </li>
+          <li>
+            <h3>One Piece</h3>
+            <a href="manga-information.html"
+              ><img src="../images/one-piece.png" alt="One Piece cover"
+            /></a>
+          </li>
+          <li>
+            <h3>Fairy Tail</h3>
+            <a href="manga-information.html"
+              ><img src="../images/fairy-tail.png" alt="Fairy Tail cover"
             /></a>
           </li>
         </ol>
