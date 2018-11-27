@@ -13,8 +13,8 @@ body {
   color: var(--font-color);
 }
 
-main {
-  padding-top: 75px;
+body > header {
+  margin-bottom: 65px;
 }
 
 .navbar {

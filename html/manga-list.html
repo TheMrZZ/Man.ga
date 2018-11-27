@@ -17,39 +17,52 @@
 
 <body>
   <header>
-    <a href="home-logged-in.html">
-      <h1>Man.ga</h1>
-    </a>
-    <form>
-      <input type="search" placeholder="Search a manga...">
-      <button type="submit"><img src="../images/loupe.svg" width="15" alt="Click to search"></button>
-    </form>
-    <a href="profile.html"><img src="../images/profile.svg" width="20" alt="Access to your profile" /></a><br />
-    <input type="button" name="sign out" value="sign out" onclick="window.location.href='home-not-logged-in.html'"><br />
-    <a href="manga-list.html">
-      Manga list
-    </a>
+    <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
+      <a class="navbar-brand" href="home-not-logged-in.html">Man.ga</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse flex-fill w-100 flex-nowrap" id="navbarSupportedContent">
+        <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
+          <li class="nav-item">
+            <a class="nav-link" href="manga-list.html">Manga list</a>
+          </li>
+        </ul>
+        <div class="searchbar nav navbar-nav flex-fill justify-content-center">
+          <form class="form-inline" action="manga-list.html" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search a manga..." aria-label="Search" name="search" />
+          </form>
+        </div>
+        <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
+          <li class="nav-item">
+          </li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
   <div class="main">
-    <nav>
+    <nav class="filters">
       <header>
         <h2>Filters</h2>
       </header>
-      <form method="GET">
-        <label>Types<br />
-          <select name="type" multiple>
+      <form method="GET" class="filter-form">
+        <div class="input">
+          <label class="label" for="filter-type">Types</label><br>
+          <select name="type" id="filter-type" multiple>
             <option value="shonen">Shonen</option>
             <option value="shojo">Shojo</option>
             <option value="seinen">Seinen</option>
             <option value="josei">Josei</option>
             <option value="kodomomuke">Kodomomuke</option>
           </select>
-        </label>
-        <br /><br />
+        </div>
 
-        <label>Genres<br />
-          <select name="genre" multiple>
+        <div class="input">
+          <label class="label" for="filter-genre">Genres</label><br>
+          <select name="genre" id="filter-genre" multiple>
             <option value="action">Action</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
@@ -64,36 +77,40 @@
             <option value="romance">Romance</option>
             <option value="scifi">SciFi</option>
           </select>
-        </label>
-        <br /><br />
+        </div>
 
-        <p>Status</p>
-        <label for="status-all">All</label>
-        <input type="radio" name="status" id="status-all" value="all"><br />
+        <div class="input">
+          <p class="label">Status</p>
+          <label for="status-all">All</label>
+          <input type="radio" name="status" id="status-all" value="all"><br />
 
-        <label for="status-ongoing">Ongoig</label>
-        <input type="radio" name="status" id="status-ongoing" value="Ongoing"><br />
+          <label for="status-ongoing">Ongoing</label>
+          <input type="radio" name="status" id="status-ongoing" value="Ongoing"><br />
 
-        <label for="status-completed">Completed</label>
-        <input type="radio" name="status" id="status-completed" value="Completed">
-        <br /><br />
+          <label for="status-completed">Completed</label>
+          <input type="radio" name="status" id="status-completed" value="Completed">
+        </div>
 
-        <p>Rating<br />
-          At least <input type="number" min="0" max="10" value="0"> stars
-        </p>
+        <div class="input">
+          <p class="label">Rating</p>
+          <p> At least <input class="min-rating" type="number" min="0" max="10" value="0"> stars </p>
+        </div>
 
-        <p>Favorites</p>
-        <label for="favorite-all">All:</label>
-        <input type="radio" name="favorite" id="favorite-all" value="all"><br />
+        <div class="input">
+          <p class="label">Favorites</p>
+          <label for="favorite-all">All:</label>
+          <input type="radio" name="favorite" id="favorite-all" value="all"><br>
 
-        <label for="favorite-only">Favorites Only</label>
-        <input type="radio" name="favorite" id="favorite-only" value="only"><br />
+          <label for="favorite-only">Favorites Only</label>
+          <input type="radio" name="favorite" id="favorite-only" value="only"><br>
 
-        <label for="favorite-none">Hide Favorites</label>
-        <input type="radio" name="favorite" id="favorite-none" value="none">
-        <br />
-
-        <button type="submit">Search</button>
+          <label for="favorite-none">Hide Favorites</label>
+          <input type="radio" name="favorite" id="favorite-none" value="none"><br>
+        </div>
+        
+        <div class="submit-wrapper">
+          <button class="filter-submit" type="submit">Search</button>
+        </div>
       </form>
     </nav>
 
@@ -111,76 +128,105 @@
         </form>
       </header>
 
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2">Manga</th>
-            <th>Category</th>
-            <th>Rating</th>
-            <th>Last Updated</th>
-            <th>&star;</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><a href="manga-information.html"><img src="../images/one-piece.png" alt="One Piece cover" width="100"></a></td>
-            <td>
-              <p>One Piece</p>
+      <ul class="manga-list">
+        <li>
+          <ul class="manga">
+            <li class="cover"><a href="manga-information.html"><img src="../images/one-piece.png" alt="One Piece cover"
+                  ></a></li>
+            <li class="info">
+              <p class="name">One Piece</p>
               <p>925 chapters</p>
-            </td>
-            <td>
+            </li>
+            <li class="type">
               <p>Shonen</p>
               <p>Action, Adventure, Fantasy</p>
-            </td>
-            <td> &star; 9.07 </td>
-            <td> 9 hours ago</td>
-            <td style="color:yellow"> &starf; </td>
-          </tr>
-          <tr>
-            <td><img src="../images/attack-on-titan.jpg" alt="Attack on Titan cover" width="100"></td>
-            <td>
-              <p>Shingeki No Kyojin - Attack on Titan</p>
+            </li>
+            <li class="rating"> &star; 9.07 </li>
+            <li class="last-update"> 9 hours ago</li>
+            <li class="favorite is-favorite" style="color:yellow"> &starf; </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="manga">
+            <li class="cover"><img src="../images/attack-on-titan.jpg" alt="Attack on Titan cover" ></li>
+            <li class="info">
+              <p class="name">Shingeki No Kyojin - Attack on Titan</p>
               <p>542 chapters</p>
-            </td>
-            <td>
+            </li>
+            <li class="type">
               <p>Seinen</p>
               <p>Action, Horror, Fantasy</p>
-            </td>
-            <td> &star; 8.56 </td>
-            <td> 2 days ago</td>
-            <td> &star; </td>
-          </tr>
-          <tr>
-            <td><img src="../images/tower-of-god.jpg" alt="Tower of God cover" width="100"></td>
-            <td>
-              <p>Tower of God</p>
+            </li>
+            <li class="rating"> &star; 8.56 </li>
+            <li class="last-update"> 2 days ago</li>
+            <li class="favorite"> &star; </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="manga">
+            <li class="cover"><img src="../images/tower-of-god.jpg" alt="Tower of God cover" ></li>
+            <li class="info">
+              <p class="name">Tower of God</p>
               <p>650 chapters</p>
-            </td>
-            <td>
+            </li>
+            <li class="type">
               <p>Shonen</p>
               <p>Action, Fantasy, Magic, Mystery</p>
-            </td>
-            <td> &star; 7.3 </td>
-            <td> 1 week ago</td>
-            <td style="color:yellow"> &starf; </td>
-          </tr>
-          <tr>
-            <td><img src="../images/fairy-tail.png" alt="Fairy Tail cover" width="100"></td>
-            <td>
-              <p>Fairy Tail</p>
+            </li>
+            <li class="rating"> &star; 7.3 </li>
+            <li class="last-update"> 1 week ago</li>
+            <li class="favorite" style="color:yellow"> &starf; </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="manga">
+            <li class="cover"><img src="../images/fairy-tail.png" alt="Fairy Tail cover" ></li>
+            <li class="info">
+              <p class="name">Fairy Tail</p>
               <p>12 chapters</p>
-            </td>
-            <td>
+            </li>
+            <li class="type">
               <p>Shojo</p>
               <p>Comedy, Fantasy, Magic, Romance</p>
-            </td>
-            <td> &star; 4.2 </td>
-            <td> 1 year ago</td>
-            <td> &star; </td>
-          </tr>
-        </tbody>
-      </table>
+            </li>
+            <li class="rating"> &star; 4.2 </li>
+            <li class="last-update"> 1 year ago</li>
+            <li class="favorite"> &star; </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="manga">
+            <li class="cover"><img src="../images/fairy-tail.png" alt="Fairy Tail cover" ></li>
+            <li class="info">
+              <p class="name">Fairy Tail</p>
+              <p>12 chapters</p>
+            </li>
+            <li class="type">
+              <p>Shojo</p>
+              <p>Comedy, Fantasy, Magic, Romance</p>
+            </li>
+            <li class="rating"> &star; 4.2 </li>
+            <li class="last-update"> 1 year ago</li>
+            <li class="favorite"> &star; </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="manga">
+            <li class="cover"><img src="../images/fairy-tail.png" alt="Fairy Tail cover" ></li>
+            <li class="info">
+              <p class="name">Fairy Tail</p>
+              <p>12 chapters</p>
+            </li>
+            <li class="type">
+              <p>Shojo</p>
+              <p>Comedy, Fantasy, Magic, Romance</p>
+            </li>
+            <li class="rating"> &star; 4.2 </li>
+            <li class="last-update"> 1 year ago</li>
+            <li class="favorite"> &star; </li>
+          </ul>
+        </li>
+      </ul>
     </main>
   </div>
 

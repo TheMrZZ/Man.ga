@@ -5,14 +5,191 @@
   --font-color: #707070;
 }
 
+/* For small screens, first display filters then mangas */
 .main {
-  width: 100%;
+  width: 90%;
+  margin: auto;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
+  flex-flow: column nowrap;
 }
 
-.main > nav {
-  flex-basis: 25%;
+.main > * {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid transparent;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 90%;
+  overflow: hidden;
+  background-color: var(--primary-color);
+}
+
+/* The manga list should take 90% of the width */
+.main main {
+  width: 90%;
+}
+
+/* Filters settings */
+.filters {
+  line-height: 1.5em;
+}
+
+.filter-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.submit-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters p {
+  white-space: nowrap;
+  padding: 0;
+  margin-bottom: 0.5em;
+}
+
+.filters .input {
+  line-height: 1em;
+  margin-top: 1em;
+  white-space: nowrap;
+}
+
+.label {
+  font-size: 1.2em;
+  color: #505050;
+}
+
+.min-rating {
+  width: 3em;
+}
+
+/* No bullet points before mangas in manga list */
+.main ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Mangas should display as an horizontal list */
+.manga-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding-left: 0;
+  justify-content: space-between;
+}
+
+.manga {
+  max-width: 150px;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.manga img {
+  width: 150px;
+}
+
+.manga * {
+  display: none;
+}
+
+.cover, .cover *, .name, .info {
+  display: initial;
+  align-content: center;
+  align-self: flex-start;
+  flex-basis: 0;
+}
+
+
+/* For larger screens: 
+ * - display filters on the left
+ * - Filters are sticky
+ * - Display a full list of manga properties
+ * - Submit button is not centered
+  */
+@media screen and (min-width: 992px) {
+  .main {
+      flex-flow: row nowrap;
+  }
+  
+  .manga {
+    max-width: unset;
+  }
+
+  .manga * {
+    display: unset;
+  }
+
+  .manga img {
+    width: fit-content;
+  }
+
+  .filters {
+    flex: 1 1 content;
+    position: sticky;
+    top: 75px;
+  }
+
+  .filter-form {
+    max-height: calc(100vh - 75px - 75px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-flow: column nowrap;
+  }
+
+  .main > main {
+    flex: 0 1 auto;
+    margin-left: 20px;
+  }
+
+  .manga {
+    width: 700px;
+    margin: 10px 0px;
+    padding-left: 0;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  /* Set the size of each "column"*/
+  .manga > * {
+    margin-right: 10px;
+    flex-grow: 1;
+  }
+
+  .manga p {
+    display: block;
+  }
+
+  .cover {
+    flex-basis:15%;
+  }
+
+  .info {
+    flex-basis: 20%;
+  }
+
+  .type {
+    flex-basis: 35%;
+  }
+
+  .rating {
+    flex-basis: 10%;
+  }
+
+  .last-update {
+    flex-basis: 20%;
+  }
+
+  .favorite {
+    flex-basis: 5%;
+  }
+
+  .submit-wrapper {
+    justify-content: flex-start;
+  }
 }
