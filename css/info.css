@@ -1,0 +1,27 @@
+/* Declare variables for easier use */
+:root {
+  --primary-color: #fcfcfc;
+  --secondary-color: #e8e8e8;
+  --font-color: #707070;
+}
+
+p {
+    padding: 50px;
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 90%;
+    max-width: 700px;
+    min-width: 380px;
+    margin: auto;
+    margin-top: 50px;
+    overflow: hidden;
+    background-color: var(--primary-color);
+  }
+
+  h1
+  {
+      text-align: center;
+      margin-top: 10px;
+      
+  }

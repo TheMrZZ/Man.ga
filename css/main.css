@@ -56,7 +56,7 @@ body > main, body > .main {
   .searchbar {
     position: absolute;
     left: 50%;
-    -webkit-transform: translateX(-50%);
+    
     transform: translateX(-50%);
   }
 }
@@ -116,13 +116,13 @@ footer > a:before {
   bottom: 1px;
   left: 0;
   background-color: rgb(65, 65, 65);
-  -webkit-transform: scaleX(0);
+  
   transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
+  
   transition: all 0.3s ease-in-out 0s;
 }
 
 footer > a:hover:before {
-  -webkit-transform: scaleX(1);
+  
   transform: scaleX(1);
 }
