@@ -5,6 +5,7 @@
   --font-color: #707070;
 }
 
+/* The manga displayers are in centered column */
 main {
   width: 100%;
   display: inline-flex;
@@ -13,6 +14,7 @@ main {
   align-items: center;
 }
 
+/* Draw boxes around displayers */
 .manga-display {
   margin-top: 30px;
   padding: 10px;
@@ -24,6 +26,7 @@ main {
   background-color: var(--primary-color);
 }
 
+/* A list of mangas is a flexbox containing manga covers & names */
 .manga-list {
   width: 100%;
   overflow: auto;
@@ -34,6 +37,7 @@ main {
   padding: 0;
 }
 
+/* Each manga is a flexbox too, with a cover on top and a name on bottom */
 .manga-list li {
   display: flex;
   flex-direction: column-reverse;
@@ -45,6 +49,7 @@ main {
   flex-basis: 0;
 }
 
+/* A manga cover is 150px wide */
 .manga-list img {
   width: 150px;
 }

@@ -71,7 +71,7 @@ in the corresponding input*/
 }
 
 /*button to submit the informations */
-#submit {
+.submit {
   display: inline-block;
   margin-top: 25px;
   padding: 12px 24px;
@@ -86,7 +86,7 @@ in the corresponding input*/
 }
 
 /* animation when you hover the button*/
-#submit:hover {
+.submit:hover {
   background: rgb(92, 92, 92);
   color: #ffffff;
 }
@@ -120,7 +120,8 @@ p.link > a:hover {
   color: rgb(32, 32, 32);
 }
 
-/*manage the animation of the line under the links*/
+/*manage the animation of the line under the links.
+ See home.css for explanation */
 p.link > a:before {
   content: "";
   position: absolute;
@@ -129,7 +130,6 @@ p.link > a:before {
   bottom: 0px;
   left: 0;
   background-color: rgb(32, 32, 32);
-  visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease-in-out 0s;
@@ -139,7 +139,6 @@ p.link > a:before {
 /*manage the lenght and visibility 
 of the line when the link is hovered*/
 p.link > a:hover:before {
-  visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }

@@ -5,6 +5,10 @@
   --font-color: #707070;
 }
 
+/* The body have a nice linear gradient,
+ * and should be at least 100% of the view height
+ * so that the footer is always on bottom of the page,
+ * even when the page is too small */
 body {
   background: linear-gradient(to right bottom,rgba(245, 159, 102, 0.479), rgba(132, 238, 252, 0.726)) fixed, linear-gradient(to right top,rgba(255, 251, 0, 0.274), rgba(255, 0, 149, 0.397)) fixed;
   background-size: contain;
@@ -19,6 +23,7 @@ body > main, body > .main {
   padding-top: 65px;
 }
 
+/**** Mostly design elements ****/
 .navbar {
   background-color: var(--primary-color);
 }
@@ -46,7 +51,7 @@ body > main, body > .main {
   position: relative;
 }
 
-/* Center it for large devices (desktops, 992px and up) */
+/* But center it for large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .searchbar {
     position: absolute;
@@ -56,11 +61,15 @@ body > main, body > .main {
   }
 }
 
+/* Burger icon */
 .nav-icon {
   width: 10px;
   height: 10px;
 }
 
+/**** Footer ****/
+/* It should always be on bottom of the page.
+ * It is a flexbox, so links have even spaces around them */
 footer 
 {
   position: absolute;
@@ -78,21 +87,27 @@ footer
   flex-direction: row;
 }
 
-footer a
-{
-  color: var(--font-color);
-}
-
+/* Footer links should be black with no decoration */
 footer > a {
   position: relative;
   color: #000;
   text-decoration: none;
 }
 
+/* On hover, become gray */
 footer > a:hover {
   color: rgb(65, 65, 65);
 }
 
+/* Animation to draw a line.
+ * The trick is to draw something empty,
+ * with a height of 2px, 
+ * one pixel under the link,
+ * the same width than the link,
+ * and with a background.
+ * Extending this empty element on hover will
+ * extend the background as a 2px high line,
+ * giving an underline impression. */
 footer > a:before {
   content: "";
   position: absolute;
@@ -101,7 +116,6 @@ footer > a:before {
   bottom: 1px;
   left: 0;
   background-color: rgb(65, 65, 65);
-  visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.3s ease-in-out 0s;
@@ -109,7 +123,6 @@ footer > a:before {
 }
 
 footer > a:hover:before {
-  visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
