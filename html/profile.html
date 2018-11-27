@@ -7,8 +7,9 @@
   <title>Man.ga - Login</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous" />
+  <link href="../css/form.css" rel="stylesheet" type="text/css" />
   <link href="../css/main.css" rel="stylesheet" type="text/css" />
-  <link href="../css/manga-list.css" rel="stylesheet" type="text/css" />
+  <link href="../css/profile.css" rel="stylesheet" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
   <meta name="description" content="Man.ga login page - login to Man.ga to get more features.">
@@ -51,34 +52,51 @@
 
     <p>Username: JohnDoe</p>
 
-    <form>
-      <p>Change your password:</p>
-      <label>Current password
-        <input type="password" name="current" required /><br />
-      </label>
-
-      <label>New password
-        <input type="password" name="new" required /><br />
-      </label>
-
-      <label>Confirm password:
-        <input type="password" name="confirmation" required /><br />
-      </label>
-
-      <input type="submit" value="confirm">
+    <form class="sign">
+      <h1 class="login">Change your password</h1>
+      <div>
+        <p class="label-txt"><label for="password">ENTER YOUR CURRENT PASSWORD</label></p>
+        <input type="password" class="input" name="password" id="password" autocomplete="off" required />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </div>
+      <div>
+        <p class="label-txt"><label for="new-password">ENTER YOUR NEW PASSWORD</label></p>
+        <input type="password" class="input" name="new-password" id="new-password" autocomplete="off" required />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </div>
+      <div>
+        <p class="label-txt"><label for="confirm-password">CONFIRM YOUR NEW PASSWORD</label></p>
+        <input type="password" class="input" name="confirm-password" id="confirm-password" autocomplete="off" required />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </div>
+      <button type="submit" name="change-password" id="submit-password" class="submit">Confirm</button>
     </form>
 
-    <p>Email: john@doe.com</p>
+    <form class="sign">
+      <h1 class="login">Change your email</h1>
+      <div>
+        <p class="label-txt"><label for="username">ENTER YOUR USERNAME</label></p>
+        <input type="text" class="input" name="username" id="username" autocomplete="off" required />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </div>
+      <div>
+        <p class="label-txt"><label for="email">ENTER YOUR EMAIL</label></p>
+        <input type="email" class="input" name="email" id="email" autocomplete="off" required />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </div>
+      <button type="submit" name="submit-email" id="submit-email" class="submit">Confirm</button>
 
-    <form>
-      <p>Change your email:</p>
-      <label>New Email
-        <input type="email" name="email" required /><br />
-      </label>
-
-      <input type="submit" value="confirm">
     </form>
-
 
   </main>
 
@@ -86,6 +104,19 @@
     <a href="info.html">What is Man.ga?</a>
     <a href="contact.html">Contact us</a>
   </footer>
+
+  <script>
+    $(document).ready(function () {
+      $('input').focus(function () {
+        $(this).parent().find(".label-txt").addClass('label-active');
+      });
+      $("input").focusout(function () {
+        if ($(this).val() == '') {
+          $(this).parent().find(".label-txt").removeClass('label-active');
+        };
+      });
+    });
+  </script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
