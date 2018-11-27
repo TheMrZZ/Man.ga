@@ -1,10 +1,3 @@
-/* Declare variables for easier use */
-:root {
-  --primary-color: #fcfcfc;
-  --secondary-color: #e8e8e8;
-  --font-color: #707070;
-}
-
 /* For small screens, first display filters then mangas */
 .main {
   width: 90%;
@@ -24,7 +17,7 @@
   border-radius: 5px;
   width: 90%;
   overflow: hidden;
-  background-color: var(--primary-color);
+  background-color: #fcfcfc;
 }
 
 /* The manga list should take 90% of the width */
