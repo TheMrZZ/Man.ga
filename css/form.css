@@ -1,3 +1,4 @@
+/*Sign that contains the form*/
 form.sign {
   background: #ffffff;
   width: 60%;
@@ -5,37 +6,35 @@ form.sign {
   max-width: 700px;
   padding: 0 5% 60px 5%;
   text-align: center;
-  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
 }
 
+/*position of descriptive label for the input*/
 label {
   display: block;
   position: relative;
-  margin: 40px 0px;
+  margin: 0;
 }
-
+/* input bar for Username Email Password*/
 input {
   width: 100%;
   padding: 10px;
+  padding-top: 0;
   background: transparent;
   border: none;
   outline: none;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
 }
-
+/*line under the inputs*/
 .line-box {
   position: relative;
   width: 100%;
   height: 2px;
   background: #BCBCBC;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
+/*Animation that color the line in black 
+when you enter in the corresponding input*/
 .line {
   position: absolute;
   width: 0%;
@@ -47,10 +46,12 @@ input {
   transition: ease .6s;
 }
 
-input:focus+.line-box .line {
+/*width of the black line animation */
+input:focus + .line-box .line {
   width: 100%;
 }
 
+/*descriptive label for the input*/
 .label-txt {
   margin-top: 20px;
   margin-bottom: 0px;
@@ -58,30 +59,25 @@ input:focus+.line-box .line {
   font-family: sans-serif;
   font-size: .8em;
   letter-spacing: 1px;
-  color: rgb(120, 120, 120);
+  color: rgb(120,120,120);
   transition: ease .3s;
 }
 
-input {
-  padding-top: 0;
-}
-
-label {
-  margin: 0;
-}
-
+/*Animation on the label when you enter
+in the corresponding input*/
 .label-active {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
+/*button to submit the informations */
 #submit {
   display: inline-block;
   margin-top: 25px;
   padding: 12px 24px;
-  background: rgb(220, 220, 220);
+  background: rgb(220,220,220);
   font-weight: bold;
-  color: rgb(120, 120, 120);
+  color: rgb(120,120,120);
   border: none;
   outline: none;
   border-radius: 3px;
@@ -89,39 +85,50 @@ label {
   transition: ease .3s;
 }
 
+/* animation when you hover the button*/
 #submit:hover {
   background: rgb(92, 92, 92);
   color: #ffffff;
 }
 
-div.link {
+/*manage the position of the links 
+forgot password and no account
+in the page login*/
+div.link
+{
   text-align: center;
-  margin-top: -50px
+  margin-top: -50px;
 }
 
-a.link,
-p.link {
-  color: rgb(120, 120, 120);
+/*manage the color of the backslash
+between the links forgot password and no account
+in the page login*/
+p.link
+{
+  color: rgb(90, 90, 90);
 }
 
-p.link>a {
+/*when the links are not hovered*/
+p.link > a {
   position: relative;
-  color: #000;
+  color: rgb(90, 90, 90);
   text-decoration: none;
 }
 
-p.link>a:hover {
-  color: rgb(65, 65, 65);
+/* when the link are hovered*/
+p.link > a:hover {
+  color: rgb(32, 32, 32);
 }
 
-p.link>a:before {
+/*manage the animation of the line under the links*/
+p.link > a:before {
   content: "";
   position: absolute;
   width: 100%;
   height: 2px;
   bottom: 0px;
   left: 0;
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(32, 32, 32);
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
@@ -129,29 +136,35 @@ p.link>a:before {
   transition: all 0.3s ease-in-out 0s;
 }
 
-p.link>a:hover:before {
+/*manage the lenght and visibility 
+of the line when the link is hovered*/
+p.link > a:hover:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
 
-.icon {
+/*logo at the top of the form*/
+.icon
+{
   width: calc(10% + 30px);
   margin: -35px auto 0 auto;
 }
 
-textarea {
-  margin-top: 20px;
-  border: none;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  position: relative;
-  max-width: 600px;
-  width: 100%;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f844;
-  resize: none;
-  outline: none;
-  overflow: hidden;
-  box-sizing: border-box;
-}
+/*textarea for the page contact us*/
+textarea
+  {
+    margin-top: 20px;
+    border: none;  
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f844;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    box-sizing: border-box;
+  }

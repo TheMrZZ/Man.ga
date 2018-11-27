@@ -11,10 +11,11 @@
   margin: auto;
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   flex-flow: column nowrap;
 }
 
+/* Draw boxes around filters & manga list */
 .main > * {
   margin-top: 30px;
   padding: 15px;
@@ -31,17 +32,22 @@
   width: 90%;
 }
 
-/* Filters settings */
+/**** Filters settings ****/
+/* The line height shoud be a bit bigger */
 .filters {
   line-height: 1.5em;
 }
 
+/* The form is a flexbox: on mobile,
+ * it will be displayed on top, and 
+ * options will be in a row-style list*/
 .filter-form {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
 }
 
+/* Submit button should take a row only for itself, and be centered */
 .submit-wrapper {
   width: 100%;
   display: flex;
@@ -49,12 +55,10 @@
   justify-content: center;
 }
 
-.filters p {
-  white-space: nowrap;
-  padding: 0;
-  margin-bottom: 0.5em;
-}
 
+/* For the same input, options should be close
+ * from each other, on different lines, and the
+ * key-value should not be wrapped */
 .filters .input {
   line-height: 1em;
   margin-top: 1em;
@@ -62,11 +66,20 @@
   margin: 5px;
 }
 
+/* Input labels should not be wrapped,
+ * have no padding,
+ * and be slightly bigger */
 .label {
+  white-space: nowrap;
+  padding: 0;
+  margin-bottom: 0.5em;
+
   font-size: 1.2em;
   color: #505050;
 }
 
+/* The input box for the minimum rating
+ * (stars) should be 3 characters long */
 .min-rating {
   width: 3em;
 }
@@ -85,6 +98,8 @@
   justify-content: space-around
 }
 
+/* A single manga has the same width as its cover,
+ * and should display the name under the cover */
 .manga {
   max-width: 150px;
   display: flex;
@@ -95,6 +110,10 @@
   width: 150px;
 }
 
+/* The 2 following selectors will:
+ * - Hide every elements from a manga
+ * - Display only the cover and the name
+ */
 .manga * {
   display: none;
 }
@@ -114,26 +133,25 @@
  * - Submit button is not centered
   */
 @media screen and (min-width: 992px) {
+  /* This time, the filters are on the left */
+  .main {
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: flex-start;
+  }
+  
+  /* The manga list should take as much space as possible (main is a wrapper for manga-list) */
+  .main > main {
+    flex: 0 1 auto;
+    margin-left: 20px;
+  }
+
+  /* Mangas should have only space between them, not around them like in mobile */
   .manga-list {
     justify-content: space-between;
   }
 
-  .main {
-      flex-flow: row nowrap;
-  }
-  
-  .manga {
-    max-width: unset;
-  }
-
-  .manga * {
-    display: unset;
-  }
-
-  .manga img {
-    width: fit-content;
-  }
-
+  /* Filters should be as small as possible, and stick when scrolling downside */
   .filters {
     flex: 1 1 content;
     position: sticky;
@@ -144,6 +162,10 @@
     margin: 5px 0 0 0;
   }
 
+  /* The form is smaller than the height of the screen,
+   * minus the size of the header, minus a margin for design purpose.
+   * It is scrollable on vertical axis.
+   * Elements are displayed in a column shape */
   .filter-form {
     max-height: calc(100vh - 75px - 75px);
     overflow-y: auto;
@@ -151,20 +173,27 @@
     flex-flow: column nowrap;
   }
 
-  .main > main {
-    flex: 0 1 auto;
-    margin-left: 20px;
-  }
-
+  /* Display every manga with all information
+   * They should not be larger than 700px
+   * Properties should be displayed in a table-like layout */
   .manga {
     width: 700px;
+    max-width: unset;
     margin: 10px 0px;
     padding-left: 0;
     display: flex;
     flex-flow: row nowrap;
   }
 
-  /* Set the size of each "column"*/
+  .manga * {
+    display: unset;
+  }
+
+  .manga img {
+    width: fit-content;
+  }
+
+  /* Set the size of each "column" in the table-like layout*/
   .manga > * {
     margin-right: 10px;
     flex-grow: 1;
