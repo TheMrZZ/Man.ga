@@ -75,37 +75,37 @@
 
     <main>
         <form class="sign">
-            <img class="icon" src="../icon/register.svg"/>
-            <h1 class="login">Login</h1>
-            <label>
-              <p class="label-txt">ENTER YOUR USERNAME</p>
-              <input type="text" class="input" name="username" autocomplete="off" required />
+            <img class="icon" alt="register icon" src="../icon/register.svg"/>
+            <h1 class="login">Register</h1>
+            <div>
+              <p class="label-txt"><label for="username">ENTER YOUR USERNAME</label></p>
+              <input type="text" class="input" name="email" id="username" autocomplete="off" required />
               <div class="line-box">
                 <div class="line"></div>
               </div>
-            </label>
-            <label>
-                <p class="label-txt">ENTER YOUR EMAIL</p>
-              <input type="email" class="input" name="email" autocomplete="off" required />
+            </div>
+            <div>
+              <p class="label-txt"><label for="email">ENTER YOUR EMAIL</label></p>
+              <input type="email" class="input" name="email" id="email" autocomplete="off" required />
               <div class="line-box">
                 <div class="line"></div>
               </div>
-            </label>
-            <label>
-              <p class="label-txt">ENTER YOUR PASSWORD</p>
-              <input type="password" class="input" name="password" autocomplete="off" required />
+            </div>
+            <div>
+              <p class="label-txt"><label for="password">ENTER YOUR PASSWORD</label></p>
+              <input type="password" class="input" name="password" id="password" autocomplete="off" required />
               <div class="line-box">
                 <div class="line"></div>
               </div>
-              <label>
-                <p class="label-txt">CONFIRM YOUR PASSWORD</p>
-                <input type="password" class="input" name="confirmation" autocomplete="off" required />
-                <div class="line-box">
-                  <div class="line"></div>
-                </div>
-            </label>
-            <button type="submit" name="register">Register</button>
-            
+            </div>
+            <div>
+              <p class="label-txt"><label for="confirmation">CONFIRM YOUR PASSWORD</label></p>
+              <input type="password" class="input" name="confirmation" id="confirmation" autocomplete="off" required />
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </div>
+            <button type="submit" name="register" id="submit">Register</button>
           </form>
     </main>
 

@@ -1,135 +1,157 @@
 form.sign {
-    width: 60%;
-    margin: 60px auto;
-    max-width: 700px;
-    min-width: 500px;
-    background: #ffffff;
-    padding: 60px 120px 80px 120px;
-    text-align: center;
-    -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
-  }
-  label {
-    display: block;
-    position: relative;
-    margin: 40px 0px;
-  }
-  input {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: none;
-    outline: none;
-  }
-  
-  .line-box {
-    position: relative;
-    width: 100%;
-    height: 2px;
-    background: #BCBCBC;
-  }
-  
-  .line {
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgb(48, 48, 48);
-    transition: ease .6s;
-  }
-  
-  input:focus + .line-box .line {
-    width: 100%;
-  }
-  
-  .label-txt {
-    margin-top: 10px;
-    padding: 20px 10px 0px 10px;
-    font-family: sans-serif;
-    font-size: .8em;
-    letter-spacing: 1px;
-    color: rgb(120,120,120);
-    transition: ease .3s;
-  }
-  
-  input {
-    padding-top: 0;
-  }
+  background: #ffffff;
+  width: 60%;
+  margin: 60px auto;
+  max-width: 700px;
+  padding: 0 5% 60px 5%;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
 
-  label {
-    margin: 0;
-  }
+label {
+  display: block;
+  position: relative;
+  margin: 40px 0px;
+}
 
-  .label-active {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  #submit {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 24px;
-    background: rgb(220,220,220);
-    font-weight: bold;
-    color: rgb(120,120,120);
-    border: none;
-    outline: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: ease .3s;
-  }
-  
-  button:hover {
-    background: rgb(92, 92, 92);
-    color: #ffffff;
-  }
-  
-  div.link
-  {
-    text-align: center;
-    margin-top: -50px
-  }
-  
-  a.link, p.link
-  {
-    color: rgb(120,120,120);
-  }
-  
-  h6 > a {
-    position: relative;
-    color: #000;
-    text-decoration: none;
-  }
-  
-  h6 > a:hover {
-    color: rgb(65, 65, 65);
-  }
-  
-  h6 > a:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -1px;
-    left: 0;
-    background-color: rgb(65, 65, 65);
-    visibility: hidden;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
-  }
-  
-  h6 > a:hover:before {
-    visibility: visible;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
+input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .icon
-  {
-    width: 150px;
-    margin-top: -140px;
-  }
+.line-box {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #BCBCBC;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.line {
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(48, 48, 48);
+  transition: ease .6s;
+}
+
+input:focus+.line-box .line {
+  width: 100%;
+}
+
+.label-txt {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding: 20px 10px 0px 10px;
+  font-family: sans-serif;
+  font-size: .8em;
+  letter-spacing: 1px;
+  color: rgb(120, 120, 120);
+  transition: ease .3s;
+}
+
+input {
+  padding-top: 0;
+}
+
+label {
+  margin: 0;
+}
+
+.label-active {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#submit {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 24px;
+  background: rgb(220, 220, 220);
+  font-weight: bold;
+  color: rgb(120, 120, 120);
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: ease .3s;
+}
+
+#submit:hover {
+  background: rgb(92, 92, 92);
+  color: #ffffff;
+}
+
+div.link {
+  text-align: center;
+  margin-top: -50px
+}
+
+a.link,
+p.link {
+  color: rgb(120, 120, 120);
+}
+
+p.link>a {
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+
+p.link>a:hover {
+  color: rgb(65, 65, 65);
+}
+
+p.link>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0px;
+  left: 0;
+  background-color: rgb(65, 65, 65);
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+p.link>a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.icon {
+  width: calc(10% + 30px);
+  margin: -35px auto 0 auto;
+}
+
+textarea {
+  margin-top: 20px;
+  border: none;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f844;
+  resize: none;
+  outline: none;
+  overflow: hidden;
+  box-sizing: border-box;
+}

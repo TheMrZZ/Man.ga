@@ -82,7 +82,7 @@
   display: flex;
   flex-flow: row wrap;
   padding-left: 0;
-  justify-content: space-between;
+  justify-content: space-around
 }
 
 .manga {
@@ -114,6 +114,10 @@
  * - Submit button is not centered
   */
 @media screen and (min-width: 992px) {
+  .manga-list {
+    justify-content: space-between;
+  }
+
   .main {
       flex-flow: row nowrap;
   }
@@ -137,7 +141,7 @@
   }
 
   .filters .input {
-    margin: 0;
+    margin: 5px 0 0 0;
   }
 
   .filter-form {
