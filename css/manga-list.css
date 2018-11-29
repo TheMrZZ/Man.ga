@@ -187,6 +187,7 @@
 
   .manga img {
     width: fit-content;
+    max-width: 100%;
   }
 
   /* Set the size of each "column" in the table-like layout*/
