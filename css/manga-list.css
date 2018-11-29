@@ -15,7 +15,6 @@
   border: 1px solid transparent;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  width: 90%;
   overflow: hidden;
   background-color: #fcfcfc;
 }
@@ -28,6 +27,7 @@
 /**** Filters settings ****/
 /* The line height shoud be a bit bigger */
 .filters {
+  width: 90%;
   line-height: 1.5em;
 }
 
@@ -137,6 +137,7 @@
   .main > main {
     flex: 0 1 auto;
     margin-left: 20px;
+    width: 80%;
   }
 
   /* Mangas should have only space between them, not around them like in mobile */
@@ -146,7 +147,8 @@
 
   /* Filters should be as small as possible, and stick when scrolling downside */
   .filters {
-    flex: 1 1 content;
+    max-width: 20%;
+    flex: 1 1 auto;
     position: sticky;
     top: 75px;
   }
@@ -164,6 +166,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     flex-flow: column nowrap;
+    justify-content: space-between;
   }
 
   /* Display every manga with all information
