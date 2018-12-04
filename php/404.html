@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Man.ga - One Piece</title>
+  <title>Man.ga - 404 Error</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous"/>
@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
   <meta name="description" content="Man.ga manga information - get the latest information on the manga One Piece.">
-  <meta name="keywords" content="Man.ga,manga,mangas,latest,information,one,piece,One Piece">
+  <meta name="keywords" content="Man.ga,manga,404">
 </head>
 
 <body>
@@ -61,80 +61,19 @@ $statement->execute();
 $manga = $statement->fetch();
 
 if (empty($manga)) {
-  header('Location: 404.html');
+
 }
 
 ?>
 
 <main>
   <header>
-    <h1>Manga Information</h1>
+    <h1>404 Error</h1>
   </header>
-  <section>
-    <header>
-      <h2><?php echo $manga['name'] ?></h2>
-    </header>
-    <div class="manga-wrapper">
-      <img src="../images/one-piece.png" alt="One Piece cover">
-      <dl class="information-panel">
-        <dt>Title</dt>
-        <dd>Eichiiro Oda</dd>
-        <dt>Type</dt>
-        <dd>Shonen</dd>
-        <dt>Genre</dt>
-        <dd>Action</dd>
-        <dt>Rating</dt>
-        <dd>
-          <p title="Average Rating">&star; 4.67</p>
-          <p title="Number of votes"> &#128483; 104</p>
-        </dd>
-        <dt>Your Rating</dt>
-        <dd>
-          <span class="star"></span><span class="star"></span><span class="star"></span><span
-              class="star"></span><span
-              class="star"></span>
-          (Not rated yet)
-        </dd>
 
-        <dt>Publication Status</dt>
-        <dd>Ongoing</dd>
-        <dt>Description</dt>
-        <dd>
-          The manga focuses on Monkey D. Luffy, a young man who,
-          inspired by his childhood idol and
-          powerful pirate "Red Haired"
-          Shanks, sets off on a journey from the East Blue Sea to
-          find the famed treasure One Piece and
-          proclaim himself the King of the Pirates.
-        </dd>
-      </dl>
-    </div>
-  </section>
-
-  <section>
-    <header>
-      <h2>Comments</h2>
-    </header>
-    <ul class="comments">
-      <li class="comment">
-        <header class="comment-header">
-          <p>JaneDoe - 18 Jan 2018 at 6:56PM</p>
-          <p>Rating: 9&starf;</p>
-        </header>
-        <p>One of the best manga you'll find. Epic actions, incredible battles, and the
-          protagonists are juste the best.<br/>
-          Luffy is dumb sometimes, but this manga will show you what real friendship is, and
-          make you wish you were a pirate.</p>
-      </li>
-      <li class="comment">
-        <header class="comment-header">
-          <p>JohnDoe (<strong>You</strong>) - 15 Oct 2015 at 11:12AM</p>
-          <p>Rating: None</p>
-        </header>
-        <p>I must take some time to read it!</p>
-      </li>
-    </ul>
-  </section>
+  <p>
+    We could not find the page you're looking for. Sorry :(
+  </p>
 </main>
 
 <footer>
