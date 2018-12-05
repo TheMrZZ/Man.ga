@@ -90,9 +90,9 @@
       foreach ($mangasByDate as $manga) {
         echo "
           <li>
-            <h3>". $manga['name'] ."</h3>
-            <a href=\"manga-information.php?id=". $manga['id'] ."\">
-              <img src=\"../images/". $manga['id'] .".png\" alt=\"". $manga['name'] ." cover\"/>
+            <h3>" . $manga['name'] . "</h3>
+            <a href=\"manga-information.php?id=" . $manga['id'] . "\">
+              <img src=\"../images/" . $manga['id'] . ".png\" alt=\"" . $manga['name'] . " cover\"/>
             </a>
           </li>
         ";
@@ -105,6 +105,7 @@
 <footer>
   <a href="info.php">What is Man.ga?</a>
   <a href="contact.php">Contact us</a>
+  <button id="contrast-button" onclick="bigContrast()">Big Contrast</button>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -116,6 +117,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script>
+    function bigContrast() {
+        let body = document.body;
+        body.classList.toggle('big-contrast');
+    }
+</script>
 </body>
 
 </html>

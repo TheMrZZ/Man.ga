@@ -99,7 +99,9 @@
 
       <div class="input">
         <p class="label">Rating</p>
-        <p> At least <input class="min-rating" name="rating" type="number" min="0" max="5" value="0"> stars </p>
+        <p> At least <label>
+            <input class="min-rating" name="rating" type="number" min="0" max="5" value="0">
+          </label> stars </p>
       </div>
 
       <div class="input">
@@ -237,6 +239,7 @@
 <footer>
   <a href="info.php">What is Man.ga?</a>
   <a href="contact.php">Contact us</a>
+  <button id="contrast-button" onclick="bigContrast()">Big Contrast</button>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -248,6 +251,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script>
+    function bigContrast() {
+        let body = document.body;
+        body.classList.toggle('big-contrast');
+    }
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
@@ -257,7 +266,7 @@
         listClass: "manga-list",
     };
 
-    let list = new List('list-wrapper', options);
+    new List('list-wrapper', options);
 
     function updateAscDesc() {
         $('.sort.asc').parent().parent().addClass('asc').removeClass('desc');

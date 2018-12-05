@@ -51,7 +51,8 @@
 
 <?php
 require "./connect.php";
-$user = 1;
+require "./userID.php";
+
 $id = $_GET['id'];
 $statement = $conn->prepare('SELECT id, name, author, typeID, status, description FROM manga WHERE id = :id');
 $statement->bindParam(':id', $id);
@@ -73,7 +74,7 @@ $rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID
 
 $number = $conn->query('SELECT votes FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['votes'];
 
-$yourRating = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $user)->fetch()['rating'];
+$yourRating = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $currentUserID)->fetch()['rating'];
 
 $comArray = $conn->query('SELECT comment, userID FROM comment WHERE mangaID = ' . $manga['id'])->fetchall();
 
@@ -185,10 +186,10 @@ $imageID = $manga['id'];
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script>
-  function bigContrast() {
-      let body = document.body;
-      body.classList.toggle('big-contrast');
-  }
+    function bigContrast() {
+        let body = document.body;
+        body.classList.toggle('big-contrast');
+    }
 </script>
 </body>
 
