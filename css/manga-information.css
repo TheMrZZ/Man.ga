@@ -39,7 +39,8 @@ section h2 {
 
 .manga-wrapper img {
   align-self: center;
-  width: 20em;
+  width: 15em;
+  height: calc(15em * 1.6);
 }
 
 .information-panel {

@@ -51,18 +51,38 @@
 
 <?php
 require "./connect.php";
-
+$user = 1;
 $id = $_GET['id'];
-
-$statement = $conn->prepare('SELECT * FROM manga WHERE id=:id');
-$statement->bindParam(':id', $id, PDO::PARAM_INT);
+$statement = $conn->prepare('SELECT id, name, author, typeID, status, description FROM manga WHERE id = :id');
+$statement->bindParam(':id', $id);
 
 $statement->execute();
 $manga = $statement->fetch();
 
+
+$type = ucwords($conn->query('SELECT name FROM type WHERE id = ' . $manga['typeID'])->fetch()['name']);
+
+
+$genresArray = $conn->query('SELECT name FROM genre WHERE id IN (SELECT genreID as id FROM mangagenre WHERE mangaID = ' . $manga['id'] . ')')->fetchAll();
+$genres = join(", ", array_map(function ($el) {
+  return ucwords($el['name']);
+}, $genresArray));
+
+
+$rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['avgRating'], 1);
+
+$number = $conn->query('SELECT votes FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['votes'];
+
+$yourRating = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $user)->fetch()['rating'];
+
+$comArray = $conn->query('SELECT comment, userID FROM comment WHERE mangaID = ' . $manga['id'])->fetchall();
+
 if (empty($manga)) {
   header('Location: 404.html');
 }
+
+$imageID = $manga['id'];
+
 
 ?>
 
@@ -75,38 +95,40 @@ if (empty($manga)) {
       <h2><?php echo $manga['name'] ?></h2>
     </header>
     <div class="manga-wrapper">
-      <img src="../images/one-piece.png" alt="One Piece cover">
+      <?php echo "<img src='../images/" . $imageID . ".png' alt='" . $manga['name'] . "'>";
+      ?>
       <dl class="information-panel">
-        <dt>Title</dt>
-        <dd>Eichiiro Oda</dd>
+        <dt>Author</dt>
+        <dd><?php echo $manga['author'] ?></dd>
         <dt>Type</dt>
-        <dd>Shonen</dd>
+        <dd><?php echo $type ?></dd>
         <dt>Genre</dt>
-        <dd>Action</dd>
+        <dd><?php echo $genres ?></dd>
         <dt>Rating</dt>
         <dd>
-          <p title="Average Rating">&star; 4.67</p>
-          <p title="Number of votes"> &#128483; 104</p>
+          <p title="Average Rating">&star; <?php echo $rating ?></p>
+          <p title="Number of votes"> &#128483; <?php echo $number ?></p>
         </dd>
         <dt>Your Rating</dt>
         <dd>
           <span class="star"></span><span class="star"></span><span class="star"></span><span
               class="star"></span><span
               class="star"></span>
-          (Not rated yet)
+
+          <?php
+
+          if (empty($yourRating)) {
+            echo "(Not rated yet)";
+          } else {
+            echo $yourRating;
+          }
+          ?>
         </dd>
 
         <dt>Publication Status</dt>
-        <dd>Ongoing</dd>
+        <dd><?php echo $manga['status'] ?></dd>
         <dt>Description</dt>
-        <dd>
-          The manga focuses on Monkey D. Luffy, a young man who,
-          inspired by his childhood idol and
-          powerful pirate "Red Haired"
-          Shanks, sets off on a journey from the East Blue Sea to
-          find the famed treasure One Piece and
-          proclaim himself the King of the Pirates.
-        </dd>
+        <dd><?php echo $manga['description'] ?></dd>
       </dl>
     </div>
   </section>
@@ -115,42 +137,42 @@ if (empty($manga)) {
     <header>
       <h2>Comments</h2>
     </header>
-    <ul class="comments">
-      <li class="comment">
-        <header class="comment-header">
-          <p>JaneDoe - 18 Jan 2018 at 6:56PM</p>
-          <p>Rating: 9&starf;</p>
-        </header>
-        <p>One of the best manga you'll find. Epic actions, incredible battles, and the
-          protagonists are juste the best.<br/>
-          Luffy is dumb sometimes, but this manga will show you what real friendship is, and
-          make you wish you were a pirate.</p>
-      </li>
-      <li class="comment">
-        <header class="comment-header">
-          <p>JohnDoe (<strong>You</strong>) - 15 Oct 2015 at 11:12AM</p>
-          <p>Rating: None</p>
-        </header>
-        <p>I must take some time to read it!</p>
-      </li>
+    <?php
+    foreach ($comArray as $com) {
+      echo "<br>";
+      $userID = $com  ['userID'];
+      $userName = $conn->query("SELECT username FROM user WHERE id = $userID")->fetch()['username'];
+      $userRating = $conn->query("SELECT rating FROM rating WHERE userID = $userID AND mangaID = " . $manga['id'])->fetch()['rating'];
 
-      <?php
-      $dirFiles = $_SERVER['DOCUMENT_ROOT'];
-      $arrFiles = scandir($dirFiles);
-      $arrFiles2 = array_slice($arrFiles, 2);
-      print_r($arrFiles2);
-
-      foreach ($arrFiles2 as $file) {
-        echo "<br>$file<br>";
+      $star = '&starf;';
+      if (empty($userRating)) {
+        $userRating = "(Not Rated)";
+        $star = '';
       }
-      ?>
-    </ul>
+      echo "
+          <ul class=\"comments\">
+            <li class=\"comment\">
+              <header class=\"comment-header\">
+                <p> $userName </p>
+                <p>Rating: $userRating $star </p>
+              </header>
+              <p>
+              " . $com['comment'] . "<br>" . "
+              </p>
+            </li>
+          </ul>
+          ";
+    }
+
+    ?>
+
   </section>
 </main>
 
 <footer>
   <a href="info.php">What is Man.ga?</a>
   <a href="contact.php">Contact us</a>
+  <button id="contrast-button" onclick="bigContrast()">Big Contrast</button>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -162,6 +184,12 @@ if (empty($manga)) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script>
+  function bigContrast() {
+      let body = document.body;
+      body.classList.toggle('big-contrast');
+  }
+</script>
 </body>
 
 </html>
