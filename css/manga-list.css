@@ -1,51 +1,51 @@
 /* For small screens, first display filters then mangas */
 .main {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-flow: column nowrap;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column nowrap;
 }
 
 /* Draw boxes around filters & manga list */
 .main > * {
-  margin-top: 30px;
-  padding: 15px;
-  border: 1px solid transparent;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  overflow: hidden;
-  background-color: #fcfcfc;
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fcfcfc;
 }
 
 /* The manga list should take 90% of the width */
 .main main {
-  width: 90%;
+    width: 90%;
 }
 
 /**** Filters settings ****/
 /* The line height shoud be a bit bigger */
 .filters {
-  width: 90%;
-  line-height: 1.5em;
+    width: 90%;
+    line-height: 1.5em;
 }
 
 /* The form is a flexbox: on mobile,
  * it will be displayed on top, and 
  * options will be in a row-style list*/
 .filter-form {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 /* Submit button should take a row only for itself, and be centered */
 .submit-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -53,53 +53,53 @@
  * from each other, on different lines, and the
  * key-value should not be wrapped */
 .filters .input {
-  line-height: 1em;
-  white-space: nowrap;
-  margin: 5px;
+    line-height: 1em;
+    white-space: nowrap;
+    margin: 5px;
 }
 
 /* Input labels should not be wrapped,
  * have no padding,
  * and be slightly bigger */
 .label {
-  white-space: nowrap;
-  padding: 0;
-  margin-bottom: 0.5em;
+    white-space: nowrap;
+    padding: 0;
+    margin-bottom: 0.5em;
 
-  font-size: 1.2em;
-  color: #505050;
+    font-size: 1.2em;
+    color: #505050;
 }
 
 /* The input box for the minimum rating
  * (stars) should be 3 characters long */
 .min-rating {
-  width: 3em;
+    width: 3em;
 }
 
 /* No bullet points before mangas in manga list */
 .main ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 /* Mangas should display as an horizontal list */
 .manga-list {
-  display: flex;
-  flex-flow: row wrap;
-  padding-left: 0;
-  justify-content: space-around
+    display: flex;
+    flex-flow: row wrap;
+    padding-left: 0;
+    justify-content: space-around
 }
 
 /* A single manga has the same width as its cover,
  * and should display the name under the cover */
 .manga {
-  max-width: 150px;
-  display: flex;
-  flex-flow: column wrap;
+    max-width: 150px;
+    display: flex;
+    flex-flow: column wrap;
 }
 
 .manga img {
-  width: 150px;
+    width: 150px;
 }
 
 /* The 2 following selectors will:
@@ -107,16 +107,23 @@
  * - Display only the cover and the name
  */
 .manga * {
-  display: none;
+    display: none;
 }
 
 .cover, .cover *, .name, .info {
-  display: initial;
-  align-content: center;
-  align-self: flex-start;
-  flex-basis: 0;
+    display: initial;
+    align-content: center;
+    align-self: flex-start;
+    flex-basis: 0;
 }
 
+#label-sort.asc::after {
+    content: "↑";
+}
+
+#label-sort.desc::after {
+    content: "↓";
+}
 
 /* For larger screens: 
  * - display filters on the left
@@ -125,109 +132,109 @@
  * - Submit button is not centered
   */
 @media screen and (min-width: 992px) {
-  /* This time, the filters are on the left */
-  .main {
-      flex-flow: row nowrap;
-      justify-content: space-around;
-      align-items: flex-start;
-  }
-  
-  /* The manga list should take as much space as possible (main is a wrapper for manga-list) */
-  .main > main {
-    flex: 0 1 auto;
-    margin-left: 20px;
-    width: 80%;
-  }
+    /* This time, the filters are on the left */
+    .main {
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
 
-  /* Mangas should have only space between them, not around them like in mobile */
-  .manga-list {
-    justify-content: space-between;
-  }
+    /* The manga list should take as much space as possible (main is a wrapper for manga-list) */
+    .main > main {
+        flex: 0 1 auto;
+        margin-left: 20px;
+        width: 80%;
+    }
 
-  /* Filters should be as small as possible, and stick when scrolling downside */
-  .filters {
-    max-width: 20%;
-    flex: 1 1 auto;
-    position: sticky;
-    top: 75px;
-  }
+    /* Mangas should have only space between them, not around them like in mobile */
+    .manga-list {
+        justify-content: space-between;
+    }
 
-  .filter-submit {
-    margin-top: 25px;
-  }
+    /* Filters should be as small as possible, and stick when scrolling downside */
+    .filters {
+        max-width: 20%;
+        flex: 1 1 auto;
+        position: sticky;
+        top: 75px;
+    }
 
-  .filters .input {
-    margin: 5px 0 0 0;
-  }
+    .filter-submit {
+        margin-top: 25px;
+    }
 
-  /* The form is smaller than the height of the screen,
-   * minus the size of the header, minus a margin for design purpose.
-   * It is scrollable on vertical axis.
-   * Elements are displayed in a column shape */
-  .filter-form {
-    max-height: calc(100vh - 75px - 75px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-  }
+    .filters .input {
+        margin: 5px 0 0 0;
+    }
 
-  /* Display every manga with all information
-   * They should not be larger than 700px
-   * Properties should be displayed in a table-like layout */
-  .manga {
-    width: 700px;
-    max-width: unset;
-    margin: 10px 0;
-    padding-left: 0;
-    display: flex;
-    flex-flow: row nowrap;
-  }
+    /* The form is smaller than the height of the screen,
+     * minus the size of the header, minus a margin for design purpose.
+     * It is scrollable on vertical axis.
+     * Elements are displayed in a column shape */
+    .filter-form {
+        max-height: calc(100vh - 75px - 75px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+    }
 
-  .manga * {
-    display: unset;
-  }
+    /* Display every manga with all information
+     * They should not be larger than 700px
+     * Properties should be displayed in a table-like layout */
+    .manga {
+        width: 700px;
+        max-width: unset;
+        margin: 10px 0;
+        padding-left: 0;
+        display: flex;
+        flex-flow: row nowrap;
+    }
 
-  .manga img {
-    width: fit-content;
-    max-width: 100%;
-  }
+    .manga * {
+        display: unset;
+    }
 
-  /* Set the size of each "column" in the table-like layout*/
-  .manga > * {
-    margin-right: 10px;
-    flex-grow: 1;
-  }
+    .manga img {
+        width: fit-content;
+        max-width: 100%;
+    }
 
-  .manga p {
-    display: block;
-  }
+    /* Set the size of each "column" in the table-like layout*/
+    .manga > * {
+        margin-right: 10px;
+        flex-grow: 1;
+    }
 
-  .cover {
-    flex-basis: 15%;
-  }
+    .manga p {
+        display: block;
+    }
 
-  .info {
-    flex-basis: 20%;
-  }
+    .cover {
+        flex-basis: 15%;
+    }
 
-  .type {
-    flex-basis: 35%;
-  }
+    .info {
+        flex-basis: 20%;
+    }
 
-  .rating {
-    flex-basis: 10%;
-  }
+    .type {
+        flex-basis: 35%;
+    }
 
-  .last-update {
-    flex-basis: 20%;
-  }
+    .rating {
+        flex-basis: 10%;
+    }
 
-  .favorite {
-    flex-basis: 5%;
-  }
+    .last-update {
+        flex-basis: 20%;
+    }
 
-  .submit-wrapper {
-    justify-content: flex-start;
-  }
+    .favorite {
+        flex-basis: 5%;
+    }
+
+    .submit-wrapper {
+        justify-content: flex-start;
+    }
 }

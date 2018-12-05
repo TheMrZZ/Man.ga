@@ -133,6 +133,17 @@ if (empty($manga)) {
         </header>
         <p>I must take some time to read it!</p>
       </li>
+
+      <?php
+      $dirFiles = $_SERVER['DOCUMENT_ROOT'];
+      $arrFiles = scandir($dirFiles);
+      $arrFiles2 = array_slice($arrFiles, 2);
+      print_r($arrFiles2);
+
+      foreach ($arrFiles2 as $file) {
+        echo "<br>$file<br>";
+      }
+      ?>
     </ul>
   </section>
 </main>

@@ -55,7 +55,8 @@
     <form method="GET" class="filter-form">
       <div class="input">
         <label class="label" for="filter-type">Types</label><br>
-        <select name="type" id="filter-type" multiple>
+        <select name="type" id="filter-type">
+          <option value="any">Any</option>
           <option value="shonen">Shonen</option>
           <option value="shojo">Shojo</option>
           <option value="seinen">Seinen</option>
@@ -66,12 +67,13 @@
 
       <div class="input">
         <label class="label" for="filter-genre">Genres</label><br>
-        <select name="genre" id="filter-genre" multiple>
+        <select name="genre" id="filter-genre">
+          <option value="any">Any</option>
           <option value="action">Action</option>
           <option value="adventure">Adventure</option>
           <option value="comedy">Comedy</option>
           <option value="drama">Drama</option>
-          <option value="slice-of-life">Slice of Life</option>
+          <option value="slice of life">Slice of Life</option>
           <option value="fantasy">Fantasy</option>
           <option value="magic">Magic</option>
           <option value="supernatural">Supernatural</option>
@@ -97,7 +99,7 @@
 
       <div class="input">
         <p class="label">Rating</p>
-        <p> At least <input class="min-rating" type="number" min="0" max="5" value="0"> stars </p>
+        <p> At least <input class="min-rating" name="rating" type="number" min="0" max="5" value="0"> stars </p>
       </div>
 
       <div class="input">
@@ -121,155 +123,114 @@
   <main>
     <header>
       <h2>Manga List</h2>
-      <form>
-        <label>Sort by &nbsp;
-          <select name="sort">
-            <option value="popularity">Popularity</option>
-            <option value="votes">Number of votes</option>
-            <option value="data">Date of last update</option>
-          </select>
-        </label>
-      </form>
     </header>
 
-    <ul class="manga-list">
-      <?php
-      require './connect.php';
-      $statement = $conn->prepare('SELECT * FROM manga');
-      // TODO: bind params
+    <div id="list-wrapper">
+      <label id="label-sort">Sort by &nbsp;
+        <select name="sort" id="manga-sort" onchange="updateAscDesc()">
+          <option value="votes" class="sort" data-sort="name" id="sort-votes">Title</option>
+          <option value="rating" class="sort" data-sort="rating" id="sort-rating">Rating</option>
+          <option value="chapters" class="sort" data-sort="chapters" id="sort-chapters">Number of chapters</option>
+        </select>
+      </label>
 
-      $statement->execute();
-      $mangaList = $statement->fetchAll();
+      <ul class="manga-list">
+        <?php
+        require './connect.php';
+        require './userID.php';
 
-      foreach ($mangaList as $manga) {
-        $type = $conn->query('SELECT name FROM type WHERE id = ' . $manga['typeID'])->fetch()['name'];
-        $genresArray = $conn->query('SELECT name FROM genre WHERE id IN (SELECT genreID FROM mangagenre WHERE mangaID = ' . $manga['id'] . ')')->fetchAll();
-        $genres = "";
-        foreach ($genresArray as $genre) {
-          $genres .= ", ";
+        $query = 'SELECT id, name, author, typeID, status, description, chapters, last_update FROM manga';
+        $whereOrAnd = "WHERE";
+
+        if (!empty($_GET['search'])) {
+          $name = '%' . strtolower($_GET['search']) . '%';
+          $query .= " $whereOrAnd name LIKE :name";
+          $whereOrAnd = "AND";
         }
 
-        echo "
+        if (!empty($_GET['type']) && $_GET['type'] !== "any") {
+          $type = strtolower($_GET['type']);
+          $statement = $conn->prepare('SELECT id FROM type WHERE name = :name');
+          $statement->bindParam(':name', $type);
+          $statement->execute();
+          $typeID = $statement->fetch()['id'];
+          $query .= " $whereOrAnd typeID = :typeID";
+          $whereOrAnd = "AND";
+        }
+
+        if (!empty($_GET['genre']) && $_GET['genre'] !== "any") {
+          $genre = strtolower($_GET['genre']);
+          echo "Genre is $genre";
+          $statement = $conn->prepare('SELECT id FROM genre WHERE name = :name');
+          $statement->bindParam(':name', $genre);
+          $statement->execute();
+          $genreID = $statement->fetch()['id'];
+          $query .= " $whereOrAnd manga.id IN (SELECT mg.mangaID FROM mangagenre AS mg WHERE mg.genreID = :genreID)";
+          $whereOrAnd = "AND";
+        }
+
+        if (!empty($_GET['status']) && $_GET['status'] !== "all") {
+          $status = strtolower($_GET['status']);
+          $query .= " $whereOrAnd manga.status = :status";
+          $whereOrAnd = "AND";
+        }
+
+        if (!empty($_GET['rating'])) {
+          $rating = strtolower($_GET['rating']);
+          $query .= " $whereOrAnd :rating < (SELECT avgRating FROM average_rating WHERE mangaID = manga.id)";
+          $whereOrAnd = "AND";
+        }
+
+        if (!empty($_GET['favorite']) && $_GET['favorite'] !== 'all') {
+          $favorite = strtolower($_GET['favorite']);
+          $query .= " $whereOrAnd :rating < (SELECT avgRating FROM average_rating WHERE mangaID = manga.id)";
+          $whereOrAnd = "AND";
+        }
+
+        echo $query;
+        $statement = $conn->prepare($query);
+        if (!empty($name)) $statement->bindParam(':name', $name);
+        if (!empty($typeID)) $statement->bindParam(':typeID', $typeID);
+        if (!empty($genreID)) $statement->bindParam(':genreID', $genreID);
+        if (!empty($status)) $statement->bindParam(':status', $status);
+        if (!empty($rating)) $statement->bindParam(':rating', $rating);
+
+        $statement->execute();
+        $mangaList = $statement->fetchAll();
+
+        foreach ($mangaList as $manga) {
+          $type = ucwords($conn->query('SELECT name FROM type WHERE id = ' . $manga['typeID'])->fetch()['name']);
+          $genresArray = $conn->query('SELECT name FROM genre WHERE id IN (SELECT genreID as id FROM mangagenre WHERE mangaID = ' . $manga['id'] . ')')->fetchAll();
+          $genres = join(", ", array_map(function ($el) {
+            return ucwords($el['name']);
+          }, $genresArray));
+
+          $rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['avgRating'], 1);
+
+          echo "
           <li>
             <ul class=\"manga\">
-              <li class=\"cover\"><a href=\"manga-information.php\"><img src=\"../images/" . $manga['id'] . ".png\"
-                                                                     alt=\"" . $manga['name'] . " cover\"></a></li>
+              <li class=\"cover\"><a href=\"manga-information.php?id=" . $manga['id'] . "\">
+                <img src=\"../images/" . $manga['id'] . ".png\" alt=\"" . $manga['name'] . " cover\"></a>
+              </li>
               <li class=\"info\">
                 <p class=\"name\">" . $manga['name'] . "</p>
-                <p>925 chapters</p>
+                <p class=\"chapters\">" . $manga['chapters'] . " chapters</p>
               </li>
               <li class=\"type\">
                 <p>" . $type . "</p>
                 <p>" . $genres . "</p>
               </li>
-              <li class=\"rating\"> &star; 4.67</li>
-              <li class=\"last-update\"> 9 hours ago</li>
+              <li class=\"rating\"> &star; " . $rating . "</li>
+              <li class=\"last-update\">" . $manga['last_update'] . "</li>
               <li class=\"favorite is-favorite\" style=\"color:yellow\"> &starf;</li>
             </ul>
           </li>
         ";
-      }
-      ?>
-
-      <li>
-        <ul class="manga">
-          <li class="cover"><a href="manga-information.php"><img src="../images/one-piece.png"
-                                                                 alt="One Piece cover"></a></li>
-          <li class="info">
-            <p class="name">One Piece</p>
-            <p>925 chapters</p>
-          </li>
-          <li class="type">
-            <p>Shonen</p>
-            <p>Action, Adventure, Fantasy</p>
-          </li>
-          <li class="rating"> &star; 4.67</li>
-          <li class="last-update"> 9 hours ago</li>
-          <li class="favorite is-favorite" style="color:yellow"> &starf;</li>
-        </ul>
-      </li>
-
-      <li>
-        <ul class="manga">
-          <li class="cover"><img src="../images/attack-on-titan.jpg" alt="Attack on Titan cover"></li>
-          <li class="info">
-            <p class="name">Shingeki No Kyojin - Attack on Titan</p>
-            <p>542 chapters</p>
-          </li>
-          <li class="type">
-            <p>Seinen</p>
-            <p>Action, Horror, Fantasy</p>
-          </li>
-          <li class="rating"> &star; 4.3</li>
-          <li class="last-update"> 2 days ago</li>
-          <li class="favorite"> &star;</li>
-        </ul>
-      </li>
-      <li>
-        <ul class="manga">
-          <li class="cover"><img src="../images/tower-of-god.jpg" alt="Tower of God cover"></li>
-          <li class="info">
-            <p class="name">Tower of God</p>
-            <p>650 chapters</p>
-          </li>
-          <li class="type">
-            <p>Shonen</p>
-            <p>Action, Fantasy, Magic, Mystery</p>
-          </li>
-          <li class="rating"> &star; 4.1</li>
-          <li class="last-update"> 1 week ago</li>
-          <li class="favorite" style="color:yellow"> &starf;</li>
-        </ul>
-      </li>
-      <li>
-        <ul class="manga">
-          <li class="cover"><img src="../images/fairy-tail.png" alt="Fairy Tail cover"></li>
-          <li class="info">
-            <p class="name">Fairy Tail</p>
-            <p>12 chapters</p>
-          </li>
-          <li class="type">
-            <p>Shojo</p>
-            <p>Comedy, Fantasy, Magic, Romance</p>
-          </li>
-          <li class="rating"> &star; 1.2</li>
-          <li class="last-update"> 1 year ago</li>
-          <li class="favorite"> &star;</li>
-        </ul>
-      </li>
-      <li>
-        <ul class="manga">
-          <li class="cover"><img src="../images/fairy-tail.png" alt="Fairy Tail cover"></li>
-          <li class="info">
-            <p class="name">Fairy Tail</p>
-            <p>12 chapters</p>
-          </li>
-          <li class="type">
-            <p>Shojo</p>
-            <p>Comedy, Fantasy, Magic, Romance</p>
-          </li>
-          <li class="rating"> &star; 1.2</li>
-          <li class="last-update"> 1 year ago</li>
-          <li class="favorite"> &star;</li>
-        </ul>
-      </li>
-      <li>
-        <ul class="manga">
-          <li class="cover"><img src="../images/fairy-tail.png" alt="Fairy Tail cover"></li>
-          <li class="info">
-            <p class="name">Fairy Tail</p>
-            <p>12 chapters</p>
-          </li>
-          <li class="type">
-            <p>Shojo</p>
-            <p>Comedy, Fantasy, Magic, Romance</p>
-          </li>
-          <li class="rating"> &star; 1.2</li>
-          <li class="last-update"> 1 year ago</li>
-          <li class="favorite"> &star;</li>
-        </ul>
-      </li>
-    </ul>
+        }
+        ?>
+      </ul>
+    </div>
   </main>
 </div>
 
@@ -287,6 +248,29 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
+<script>
+    let options = {
+        valueNames: ["rating", "chapters", "name"],
+        listClass: "manga-list",
+    };
+
+    let list = new List('list-wrapper', options);
+
+    function updateAscDesc() {
+        $('.sort.asc').parent().parent().addClass('asc').removeClass('desc');
+        $('.sort.desc').parent().parent().addClass('desc').removeClass('asc');
+    }
+
+    document.getElementById('sort-votes').onclick = updateAscDesc;
+    document.getElementById('sort-rating').onclick = updateAscDesc;
+    document.getElementById('sort-chapters').onclick = updateAscDesc;
+
+    $.ready(updateAscDesc);
+</script>
+
 </body>
 
 </html>
