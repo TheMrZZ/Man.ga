@@ -48,7 +48,15 @@ $rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID
 
 $number = $conn->query('SELECT votes FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['votes'];
 
-$yourRating = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $_SESSION['id'])->fetch()['rating'];
+$yourRating = 'Log in to rate this manga!';
+if (isset($_SESSION['logged']) && $_SESSION['loggedin'] == true) {
+  $query = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $_SESSION['id']);
+  if ($query == false) {
+    $yourRating = 'Not rated yet!';
+  } else {
+    $yourRating = $query->fetch()['rating'];
+  }
+}
 
 $comArray = $conn->query('SELECT comment, userID FROM comment WHERE mangaID = ' . $manga['id'])->fetchall();
 
@@ -101,7 +109,7 @@ $imageID = $manga['id'];
         </dd>
 
         <dt>Publication Status</dt>
-        <dd><?php echo $manga['status'] ?></dd>
+        <dd><?php echo ucwords($manga['status']) ?></dd>
         <dt>Description</dt>
         <dd><?php echo $manga['description'] ?></dd>
       </dl>
