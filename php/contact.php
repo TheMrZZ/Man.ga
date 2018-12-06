@@ -84,7 +84,7 @@
         crossorigin="anonymous"></script>
 
 <script>/*text label animation */
-    $(document).ready(function () {
+$(document).ready(function () {
         let input = $('input');
         input.focus(function () {
             $(this).parent().find(".label-txt").addClass('label-active');
@@ -94,8 +94,12 @@
                 $(this).parent().find(".label-txt").removeClass('label-active');
             }
         });
-
     });
+
+    function bigContrast() {
+        let body = document.body;
+        body.classList.toggle('big-contrast');
+    }
 </script>
 </body>
 

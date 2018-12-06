@@ -156,15 +156,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script>
-    function bigContrast() {
-        let body = document.body;
-        body.classList.toggle('big-contrast');
-    }
-</script>
 
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
         let input = $('input');
         input.focus(function () {
             $(this).parent().find(".label-txt").addClass('label-active');
@@ -175,6 +169,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         });
     });
+
+    function bigContrast() {
+        let body = document.body;
+        body.classList.toggle('big-contrast');
+    }
 </script>
 </body>
 

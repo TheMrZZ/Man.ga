@@ -172,7 +172,6 @@
           }
         }
 
-        echo "<br><br><br><br><br>$query<br><br>";
         $statement = $conn->prepare($query);
         if (!empty($name)) $statement->bindParam(':name', $name);
         if (!empty($typeID)) $statement->bindParam(':typeID', $typeID);
