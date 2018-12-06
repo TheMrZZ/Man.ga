@@ -70,7 +70,7 @@
 <script>
     function bigContrast() {
         let body = document.body;
-body.classList.toggle('big-contrast');
+        body.classList.toggle('big-contrast');
         let h1s = document.getElementsByTagName('h1');
         for (const h1 of h1s) {
             h1.classList.toggle('big-contrast');

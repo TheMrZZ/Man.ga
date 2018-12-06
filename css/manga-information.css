@@ -1,50 +1,50 @@
 /* Sections should go in columns */
 main {
-  width: 100%;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 /* Sections are wrapped in a blank rectangle with smooth borders */
 section {
-  margin-top: 30px;
-  padding: 10px;
-  border: 1px solid transparent;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  width: 90%;
-  overflow: hidden;
-  background-color: #fcfcfc;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 90%;
+    overflow: hidden;
+    background-color: #fcfcfc;
 }
 
 section h2 {
-  text-align: center;
+    text-align: center;
 }
 
 /* On mobile, cover first then information */
 .manga-wrapper {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 /* On large devices (desktops, 992px and up),
  * cover on the left and info on the right */
 @media screen and (min-width: 992px) {
-  .manga-wrapper {
-    flex-direction: row;
-  }
+    .manga-wrapper {
+        flex-direction: row;
+    }
 }
 
 .manga-wrapper img {
-  align-self: center;
-  width: 15em;
-  height: calc(15em * 1.6);
+    align-self: center;
+    width: 15em;
+    height: calc(15em * 1.6);
 }
 
 .information-panel {
-  padding-left: 30px;
+    padding-left: 30px;
 }
 
 /* Key and values should be on the same line. Example: "Author  Eichiiro Oda"
@@ -52,39 +52,39 @@ instead of
 "Author
 Eichiiro Oda" */
 .information-panel dt {
-  float: left;
-  clear: left;
-  padding-right: 10px;
+    float: left;
+    clear: left;
+    padding-right: 10px;
 }
 
 /* Average rating and Number of votes should appear side by side */
 dd > p {
-  display: inline;
+    display: inline;
 }
 
 .comments {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .comment {
-  border: 1px solid #707070;
-  margin-bottom: 10px;
+    border: 1px solid #707070;
+    margin-bottom: 10px;
 }
 
 .comment > * {
-  padding: 5px;
+    padding: 5px;
 }
 
 .comment-header {
-  border-collapse: collapse;
-  border-bottom: 1px solid #707070;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    border-collapse: collapse;
+    border-bottom: 1px solid #707070;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .comment p {
-  margin: 0;
+    margin: 0;
 }

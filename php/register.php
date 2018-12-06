@@ -80,7 +80,7 @@
         crossorigin="anonymous"></script>
 
 <script>
-$(document).ready(function () {
+    $(document).ready(function () {
         let input = $('input');
         input.focus(function () {
             $(this).parent().find(".label-txt").addClass('label-active');
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     function bigContrast() {
         let body = document.body;
-body.classList.toggle('big-contrast');
+        body.classList.toggle('big-contrast');
         let h1s = document.getElementsByTagName('h1');
         for (const h1 of h1s) {
             h1.classList.toggle('big-contrast');

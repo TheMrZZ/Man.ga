@@ -10,11 +10,10 @@ p {
     margin-top: 50px;
     overflow: hidden;
     background-color: #fcfcfc;
-  }
+}
 
-  h1
-  {
-      text-align: center;
-      margin-top: 10px;
-      
-  }
+h1 {
+    text-align: center;
+    margin-top: 10px;
+
+}
