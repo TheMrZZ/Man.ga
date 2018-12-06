@@ -215,7 +215,8 @@
               </li>
               <li class=\"rating\"> &star; " . $rating . "</li>
               <li class=\"last-update\">" . $manga['last_update'] . "</li>
-              <li id='star" . $manga['id'] . "' class=\"favorite " . ($isFavorite ? 'is-favorite' : '') . "\" onclick='toggleFavorite(" . $manga['id'] . ")'> &starf;</li>
+              <li id='star" . $manga['id'] . "' class=\"favorite " . ($isFavorite ? 'is-favorite' : '') . "\" 
+              onclick='toggleFavorite(" . $manga['id'] . ")'> &starf;</li>
             </ul>
           </li>
         ";
@@ -270,10 +271,14 @@
     $.ready(updateAscDesc);
 
     function toggleFavorite(mangaID) {
-      let id = 'star' + mangaID;
-      let star = document.getElementById(id);
+      <?php if (!isset($_SESSION['id']) || $_SESSION['loggedin'] == false) {
+        echo "alert('You must be connected to add this manga to your favorites!');";
+        echo "return;";
+      } ?>
+        let id = 'star' + mangaID;
+        let star = document.getElementById(id);
 
-      star.classList.toggle('is-favorite');
+        star.classList.toggle('is-favorite');
     }
 </script>
 
