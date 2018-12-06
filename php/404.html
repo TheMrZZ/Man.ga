@@ -90,6 +90,16 @@ if (empty($manga)) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script>
+    function bigContrast() {
+        let body = document.body;
+        body.classList.toggle('big-contrast');
+        let h1s = document.getElementsByTagName('h1');
+        for (const h1 of h1s) {
+            h1.classList.toggle('big-contrast');
+        }
+    }
+</script>
 </body>
 
 </html>

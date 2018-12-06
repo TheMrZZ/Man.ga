@@ -52,7 +52,7 @@ $rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID
 $number = $conn->query('SELECT votes FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['votes'];
 
 $yourRating = 'Log in to rate this manga!';
-if (isset($_SESSION['logged']) && $_SESSION['loggedin'] == true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   $query = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $_SESSION['id']);
   if ($query == false) {
     $yourRating = 'Not rated yet!';
