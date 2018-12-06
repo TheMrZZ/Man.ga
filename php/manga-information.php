@@ -34,6 +34,9 @@ $statement->bindParam(':id', $id);
 $statement->execute();
 $manga = $statement->fetch();
 
+if (empty($manga)) {
+  header('Location: 404.html');
+}
 
 $type = ucwords($conn->query('SELECT name FROM type WHERE id = ' . $manga['typeID'])->fetch()['name']);
 
@@ -60,9 +63,6 @@ if (isset($_SESSION['logged']) && $_SESSION['loggedin'] == true) {
 
 $comArray = $conn->query('SELECT comment, userID FROM comment WHERE mangaID = ' . $manga['id'])->fetchall();
 
-if (empty($manga)) {
-  header('Location: 404.html');
-}
 
 $imageID = $manga['id'];
 
