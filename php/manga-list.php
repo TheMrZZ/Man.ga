@@ -18,33 +18,10 @@
 
 <body>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
-    <a class="navbar-brand" href="home-not-logged-in.php">Man.ga</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse flex-fill w-100 flex-nowrap" id="navbarSupportedContent">
-      <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
-        <li class="nav-item">
-          <a class="nav-link" href="manga-list.php">Manga list</a>
-        </li>
-      </ul>
-      <div class="searchbar nav navbar-nav flex-fill justify-content-center">
-        <form class="form-inline" action="manga-list.php" method="GET">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search a manga..." aria-label="Search"
-                 name="search"/>
-        </form>
-      </div>
-      <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" href="profile.php"><img src="../icon/user.svg" class="profile-icon" width="35"
-                                                      alt="Go to your profile"></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <?php
+  require './navbar.php';
+  echo $navbar;
+  ?>
 </header>
 
 <div class="main">
@@ -139,7 +116,6 @@
       <ul class="manga-list">
         <?php
         require './connect.php';
-        require './userID.php';
 
         $query = 'SELECT id, name, author, typeID, status, description, chapters, last_update FROM manga';
         $whereOrAnd = "WHERE";
@@ -183,20 +159,26 @@
           $whereOrAnd = "AND";
         }
 
-        if (!empty($_GET['favorite']) && $_GET['favorite'] !== 'all') {
+        // User must be logged to get his favourites
+        if (!empty($_GET['favorite']) && $_GET['favorite'] !== 'all' && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
           $favorite = strtolower($_GET['favorite']);
-          $query .= " $whereOrAnd :rating < (SELECT avgRating FROM average_rating WHERE mangaID = manga.id)";
-          $whereOrAnd = "AND";
+          if ($favorite == 'only') {
+            $query .= " $whereOrAnd id IN (SELECT mangaID FROM favorite WHERE userID = " . $_SESSION['id'] . ")";
+            $whereOrAnd = "AND";
+          }
+          if ($favorite == 'none') {
+            $query .= " $whereOrAnd id NOT IN (SELECT mangaID FROM favorite WHERE userID = " . $_SESSION['id'] . ")";
+            $whereOrAnd = "AND";
+          }
         }
 
-        echo $query;
+        echo "<br><br><br><br><br>$query<br><br>";
         $statement = $conn->prepare($query);
         if (!empty($name)) $statement->bindParam(':name', $name);
         if (!empty($typeID)) $statement->bindParam(':typeID', $typeID);
         if (!empty($genreID)) $statement->bindParam(':genreID', $genreID);
         if (!empty($status)) $statement->bindParam(':status', $status);
         if (!empty($rating)) $statement->bindParam(':rating', $rating);
-
         $statement->execute();
         $mangaList = $statement->fetchAll();
 
@@ -208,6 +190,15 @@
           }, $genresArray));
 
           $rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['avgRating'], 1);
+
+          $isFavorite = false;
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            $query = $conn->query('SELECT id FROM favorite WHERE mangaID =' . $manga['id'] . ' AND userID = ' . $_SESSION['id']);
+            $result = $query->fetch();
+            if ($result !== false) {
+              $isFavorite = true;
+            }
+          }
 
           echo "
           <li>
@@ -225,7 +216,7 @@
               </li>
               <li class=\"rating\"> &star; " . $rating . "</li>
               <li class=\"last-update\">" . $manga['last_update'] . "</li>
-              <li class=\"favorite is-favorite\" style=\"color:yellow\"> &starf;</li>
+              <li id='star" . $manga['id'] . "' class=\"favorite " . ($isFavorite ? 'is-favorite' : '') . "\" onclick='toggleFavorite(" . $manga['id'] . ")'> &starf;</li>
             </ul>
           </li>
         ";
@@ -278,6 +269,13 @@
     document.getElementById('sort-chapters').onclick = updateAscDesc;
 
     $.ready(updateAscDesc);
+
+    function toggleFavorite(mangaID) {
+      let id = 'star' + mangaID;
+      let star = document.getElementById(id);
+
+      star.classList.toggle('is-favorite');
+    }
 </script>
 
 </body>

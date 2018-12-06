@@ -232,6 +232,11 @@
 
     .favorite {
         flex-basis: 5%;
+        cursor: pointer;
+    }
+
+    .is-favorite {
+        color: yellow;
     }
 
     .submit-wrapper {

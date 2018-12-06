@@ -1,3 +1,0 @@
-<?php
-$currentUserID = 1;
-?>

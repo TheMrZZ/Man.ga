@@ -24,9 +24,9 @@
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Check if the user is already logged in
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-  header("location: welcome.php");
+  header("location: profile.php");
   exit;
 }
 
@@ -72,7 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if ($row = $stmt->fetch()) {
             $id = $row["id"];
             $username = $row["username"];
-            $hashed_password = $row["password"];
+            $hashed_password = $row["passwd"];
+            echo "$username<br>";
+            echo "$hashed_password<br>";
             if (password_verify($password, $hashed_password)) {
               // Password is correct, so start a new session
               session_start();
@@ -83,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["username"] = $username;
 
               // Redirect user to welcome page
-              header("location: welcome.php");
+              header("location: profile.php");
             } else {
               // Display an error message if password is not valid
               $password_err = "The password you entered was not valid.";
@@ -102,35 +104,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
-    <a class="navbar-brand" href="home-not-logged-in.php">Man.ga</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse flex-fill w-100 flex-nowrap" id="navbarSupportedContent">
-      <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
-        <li class="nav-item">
-          <a class="nav-link" href="manga-list.php">Manga list</a>
-        </li>
-      </ul>
-      <div class="searchbar nav navbar-nav flex-fill justify-content-center">
-        <form class="form-inline" action="manga-list.php" method="GET">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search a manga..."
-                 aria-label="Search" name="search"/>
-        </form>
-      </div>
-      <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="register.php">Register</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <?php
+  require './navbar.php';
+  echo $navbar;
+  ?>
 </header>
 
 <main>

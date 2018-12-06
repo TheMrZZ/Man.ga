@@ -18,40 +18,14 @@
 
 <body>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
-    <a class="navbar-brand" href="home-not-logged-in.php">Man.ga</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse flex-fill w-100 flex-nowrap" id="navbarSupportedContent">
-      <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
-        <li class="nav-item">
-          <a class="nav-link" href="manga-list.php">Manga list</a>
-        </li>
-      </ul>
-      <div class="searchbar nav navbar-nav flex-fill justify-content-center">
-        <form class="form-inline" action="manga-list.php" method="GET">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search a manga..."
-                 aria-label="Search" name="search"/>
-        </form>
-      </div>
-      <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="register.php">Register</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <?php
+  require './navbar.php';
+  echo $navbar;
+  ?>
 </header>
 
 <?php
 require "./connect.php";
-require "./userID.php";
 
 $id = $_GET['id'];
 $statement = $conn->prepare('SELECT id, name, author, typeID, status, description FROM manga WHERE id = :id');
@@ -74,7 +48,7 @@ $rating = round($conn->query('SELECT avgRating FROM average_rating WHERE mangaID
 
 $number = $conn->query('SELECT votes FROM average_rating WHERE mangaID = ' . $manga['id'])->fetch()['votes'];
 
-$yourRating = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $currentUserID)->fetch()['rating'];
+$yourRating = $conn->query('SELECT rating from rating WHERE mangaID = ' . $manga['id'] . ' AND userID = ' . $_SESSION['id'])->fetch()['rating'];
 
 $comArray = $conn->query('SELECT comment, userID FROM comment WHERE mangaID = ' . $manga['id'])->fetchall();
 

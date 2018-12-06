@@ -22,7 +22,7 @@
 <body>
 <header>
   <nav class="navbar navbar-expand-lg navbar-light main-nav fixed-top">
-    <a class="navbar-brand" href="home-not-logged-in.php">Man.ga</a>
+    <a class="navbar-brand" href="home.php">Man.ga</a>
     <button
         class="navbar-toggler"
         type="button"
