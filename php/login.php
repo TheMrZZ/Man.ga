@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous"/>
-  <link href="../css/form.css" rel="stylesheet" type="text/css"/>
   <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="../css/form.css" rel="stylesheet" type="text/css"/>
   <link href="../css/home.css" rel="stylesheet" type="text/css"/>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         crossorigin="anonymous"></script>
 
 <script>
-$(document).ready(function () {
+    $(document).ready(function () {
         let input = $('input');
         input.focus(function () {
             $(this).parent().find(".label-txt").addClass('label-active');
@@ -173,6 +173,11 @@ $(document).ready(function () {
     function bigContrast() {
         let body = document.body;
         body.classList.toggle('big-contrast');
+        let h1s = document.getElementsByTagName('h1');
+        for (const h1 of h1s) {
+            console.log('h1=', h1);
+            h1.classList.toggle('big-contrast');
+        }
     }
 </script>
 </body>

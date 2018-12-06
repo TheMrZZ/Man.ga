@@ -1,5 +1,14 @@
 /* Separate file for future growth */
 
 main {
-  text-align: center;
+    text-align: center;
+}
+
+header > h1.big-contrast {
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+main > p {
+    color: white;
 }

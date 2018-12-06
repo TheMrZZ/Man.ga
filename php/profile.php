@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous"/>
-  <link href="../css/form.css" rel="stylesheet" type="text/css"/>
   <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="../css/form.css" rel="stylesheet" type="text/css"/>
   <link href="../css/profile.css" rel="stylesheet" type="text/css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
@@ -116,7 +116,11 @@ $(document).ready(function () {
 
     function bigContrast() {
         let body = document.body;
-        body.classList.toggle('big-contrast');
+body.classList.toggle('big-contrast');
+        let h1s = document.getElementsByTagName('h1');
+        for (const h1 of h1s) {
+            h1.classList.toggle('big-contrast');
+        }
     }
 </script>
 </body>
