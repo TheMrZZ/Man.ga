@@ -1,3 +1,117 @@
+<?php
+
+// Check if the user is already logged in
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+  header("location: profile.php");
+  exit;
+}
+
+$username_err = $password_err = $confirm_password_err = $email_err = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  require './connect.php';
+
+  // Validate username
+  if (empty(trim($_POST["username"]))) {
+    $username_err = "Please enter a username.";
+  } else {
+    // Prepare a select statement
+    $sql = "SELECT id FROM user WHERE username = :username";
+
+    if ($stmt = $conn->prepare($sql)) {
+      // Set parameters
+      $param_email = trim($_POST["username"]);
+
+      // Bind variables to the prepared statement as parameters
+      $stmt->bindParam(":username", $param_email, PDO::PARAM_STR);
+
+      // Attempt to execute the prepared statement
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() == 1) {
+          $username_err = "This username is already taken.";
+        } else {
+          $username = trim($_POST["username"]);
+        }
+      } else {
+        echo "Oops! Something went wrong. Please try again later.";
+      }
+    }
+  }
+
+  // Validate email
+  if (empty(trim($_POST["email"]))) {
+    $username_err = "Please enter an email address.";
+  } else {
+    // Prepare a select statement
+    $sql = "SELECT id FROM user WHERE email = :email";
+
+    if ($stmt = $conn->prepare($sql)) {
+      // Set parameters
+      $param_email = trim($_POST["email"]);
+
+      // Bind variables to the prepared statement as parameters
+      $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+
+      // Attempt to execute the prepared statement
+      if ($stmt->execute()) {
+        if ($stmt->rowCount() == 1) {
+          $email_err = "This mail address is already linked to an account.";
+        } else {
+          $email = trim($_POST["email"]);
+        }
+      } else {
+        echo "Oops! Something went wrong. Please try again later.";
+      }
+    }
+  }
+
+  // Validate password
+  if (empty(trim($_POST["password"]))) {
+    $password_err = "Please enter a password.";
+  } elseif (strlen(trim($_POST["password"])) < 6) {
+    $password_err = "Password must have at least 6 characters.";
+  } else {
+    $password = trim($_POST["password"]);
+  }
+
+  // Validate confirm password
+  if (empty(trim($_POST["confirm"]))) {
+    $confirm_password_err = "Please confirm password.";
+  } else {
+    $confirm_password = trim($_POST["confirm"]);
+    if (empty($password_err) && ($password != $confirm_password)) {
+      $confirm_password_err = "Password did not match.";
+    }
+  }
+
+  // Check input errors before inserting in database
+  if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)) {
+    // Prepare an insert statement
+    $sql = "INSERT INTO user (username, email, passwd) VALUES (:username, :email, :password)";
+
+    if ($stmt = $conn->prepare($sql)) {
+      // Set parameters
+      $param_username = $username;
+      $param_email = $email;
+      $param_password = password_hash($password, PASSWORD_BCRYPT); // Creates a password hash
+
+      // Bind variables to the prepared statement as parameters
+      $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+      $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+      $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+
+      // Attempt to execute the prepared statement
+      if ($stmt->execute()) {
+        // Redirect to login page
+        header("location: login.php?new_user=true");
+      } else {
+        echo "Something went wrong. Please try again later.";
+      }
+    }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,11 +142,12 @@
 </header>
 
 <main>
-  <form class="sign">
+  <form class="sign" method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
     <img class="icon" alt="register icon" src="../icon/register.svg"/>
     <h1 class="login">Register</h1>
     <div>
       <p class="label-txt"><label for="username">ENTER YOUR USERNAME</label></p>
+      <p class="text-danger"><?php echo $username_err ?></p>
       <input type="text" class="input" name="username" id="username" autocomplete="off" required/>
       <div class="line-box">
         <div class="line"></div>
@@ -40,6 +155,7 @@
     </div>
     <div>
       <p class="label-txt"><label for="email">ENTER YOUR EMAIL</label></p>
+      <p class="text-danger"><?php echo $email_err ?></p>
       <input type="email" class="input" name="email" id="email" autocomplete="off" required/>
       <div class="line-box">
         <div class="line"></div>
@@ -47,6 +163,7 @@
     </div>
     <div>
       <p class="label-txt"><label for="password">ENTER YOUR PASSWORD</label></p>
+      <p class="text-danger"><?php echo $password_err ?></p>
       <input type="password" class="input" name="password" id="password" autocomplete="off" required/>
       <div class="line-box">
         <div class="line"></div>
@@ -54,7 +171,8 @@
     </div>
     <div>
       <p class="label-txt"><label for="confirmation">CONFIRM YOUR PASSWORD</label></p>
-      <input type="password" class="input" name="confirmation" id="confirmation" autocomplete="off" required/>
+      <p class="text-danger"><?php echo $confirm_password_err ?></p>
+      <input type="password" class="input" name="confirm" id="confirmation" autocomplete="off" required/>
       <div class="line-box">
         <div class="line"></div>
       </div>

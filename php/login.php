@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Man.ga - Login</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous"/>
-  <link href="../css/main.css" rel="stylesheet" type="text/css"/>
-  <link href="../css/form.css" rel="stylesheet" type="text/css"/>
-  <link href="../css/home.css" rel="stylesheet" type="text/css"/>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Florian Ernst">
-  <meta name="description" content="Man.ga login page - login to Man.ga to get more features.">
-  <meta name="keywords" content="Man.ga,manga,mangas,login,log-in,signin,sign-in">
-</head>
-
-<body>
 <?php
 // Initialize the session
 session_start();
@@ -30,16 +8,16 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
   exit;
 }
 
-// Include config file
-require "connect.php";
-
-// Define variables and initialize with empty values
-$username = $password = "";
 $username_err = $password_err = "";
 
-// Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  echo "IN POST";
+// Include config file
+  require "connect.php";
+
+// Define variables and initialize with empty values
+  $username = $password = "";
+
+// Processing form data when form is submitted
   // Check if username is empty
   if (empty(trim($_POST["username"]))) {
     $username_err = "Please enter a username.";
@@ -73,8 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $row["id"];
             $username = $row["username"];
             $hashed_password = $row["passwd"];
-            echo "$username<br>";
-            echo "$hashed_password<br>";
+
             if (password_verify($password, $hashed_password)) {
               // Password is correct, so start a new session
               session_start();
@@ -101,8 +78,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 }
+
+$success_message = "";
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  if (!empty($_GET["new_user"]) && $_GET["new_user"] == true) {
+    $success_message = "Your account was successfully created. You can now login to Man.ga!";
+  }
+}
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Man.ga - Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"/>
+  <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="../css/form.css" rel="stylesheet" type="text/css"/>
+  <link href="../css/home.css" rel="stylesheet" type="text/css"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Florian Ernst">
+  <meta name="description" content="Man.ga login page - login to Man.ga to get more features.">
+  <meta name="keywords" content="Man.ga,manga,mangas,login,log-in,signin,sign-in">
+</head>
+
+<body>
 <header>
   <?php
   require './navbar.php';
@@ -114,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <form class="sign" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <img class="icon" src="../icon/user.svg" alt="Profile icon"/>
     <h1 class="login">Login</h1>
+    <p class="text-success"><?php echo $success_message ?></p>
     <div>
       <p class="label-txt"><label for="username">ENTER YOUR USERNAME</label></p>
       <p class="text-danger"><?php echo $username_err ?></p>

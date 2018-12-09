@@ -63,10 +63,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 $comArray = $conn->query('SELECT comment, userID FROM comment WHERE mangaID = ' . $manga['id'])->fetchall();
 
-
 $imageID = $manga['id'];
-
-
 ?>
 
 <main>
