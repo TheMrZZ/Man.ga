@@ -20,8 +20,7 @@ label {
 /* input bar for Username Email Password*/
 input {
     width: 100%;
-    padding: 10px;
-    padding-top: 0;
+    padding: 0 10px 10px;
     background: transparent;
     border: none;
     outline: none;

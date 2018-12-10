@@ -81,25 +81,10 @@
 
     function bigContrast() {
         let body = document.body;
-        $(document).ready(function () {
-            let input = $('input');
-            input.focus(function () {
-                $(this).parent().find(".label-txt").addClass('label-active');
-            });
-            input.focusout(function () {
-                if ($(this).val() === '') {
-                    $(this).parent().find(".label-txt").removeClass('label-active');
-                }
-            });
-        });
-
-        function bigContrast() {
-            let body = document.body;
-            body.classList.toggle('big-contrast');
-            let h1s = document.getElementsByTagName('h1');
-            for (const h1 of h1s) {
-                h1.classList.toggle('big-contrast');
-            }
+        body.classList.toggle('big-contrast');
+        let h1s = document.getElementsByTagName('h1');
+        for (const h1 of h1s) {
+            h1.classList.toggle('big-contrast');
         }
     }
 </script>

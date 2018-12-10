@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
   <meta name="description" content="Man.ga register page - register to Man.ga to get more features.">
-  <meta name="keywords" content="Man.ga,manga,mangas,register,signup,sign-up">
+  <meta name="keywords" content="Man.ga,manga,mangas,register,sign-up">
 </head>
 
 <body>
