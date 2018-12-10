@@ -8,6 +8,7 @@ main {
 }
 
 /* Sections are wrapped in a blank rectangle with smooth borders */
+
 section {
     margin-top: 30px;
     padding: 10px;
@@ -22,6 +23,7 @@ section {
 section h2 {
     text-align: center;
 }
+
 
 /* On mobile, cover first then information */
 .manga-wrapper {
@@ -87,4 +89,57 @@ dd > p {
 
 .comment p {
     margin: 0;
+}
+
+.min-rating {
+    width: 3em;
+    
+}
+
+#put_comment {
+
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 90%;
+    overflow: hidden;
+    background-color: #fcfcfc;
+}
+
+/*textarea for the page contact us*/
+textarea {
+    margin-top: 20px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/*button to submit the informations */
+.submit {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 24px;
+    background: rgb(220, 220, 220);
+    font-weight: bold;
+    color: rgb(120, 120, 120);
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: ease .3s;
+}
+
+/* animation when you hover the button*/
+.submit:hover {
+    background: rgb(92, 92, 92);
+    color: #ffffff;
 }
