@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div>
       <p class="label-txt"><label for="username">ENTER YOUR USERNAME</label></p>
       <p class="text-danger"><?php echo $username_err ?></p>
-      <input type="text" class="input" name="username" id="username" autocomplete="off" required/>
+      <input type="text" class="input" name="username" id="username" autocomplete="off" autofocus required/>
       <div class="line-box">
         <div class="line"></div>
       </div>

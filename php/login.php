@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $success_message = "";
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   if (!empty($_GET["new_user"]) && $_GET["new_user"] == true) {
-    $success_message = "Your account was successfully created. You can now login to Man.ga!";
+    $success_message = "Your account was successfully created.<br>You can now login to Man.ga!";
   }
 }
 ?>
@@ -120,11 +120,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   <form class="sign" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <img class="icon" src="../icon/user.svg" alt="Profile icon"/>
     <h1 class="login">Login</h1>
-    <p class="text-success"><?php echo $success_message ?></p>
     <div>
       <p class="label-txt"><label for="username">ENTER YOUR USERNAME</label></p>
       <p class="text-danger"><?php echo $username_err ?></p>
-      <input type="text" class="input" name="username" id="username" required/>
+      <input type="text" class="input" name="username" id="username" autofocus required/>
       <div class="line-box">
         <div class="line"></div>
       </div>
@@ -147,6 +146,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       <a class="link" href="register.php">No account ? Create one here</a>
     </p>
   </div>
+
+  <?php if (!empty($success_message)) {
+    echo "
+      <div class=\"modal fade\" id=\"success-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
+        <div class=\"modal-dialog\" role=\"document\">
+          <div class=\"modal-content\">
+            <div class=\"modal-body text-success text-center\" style=\"width:auto;display:inline-block;\">
+              $success_message
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        $(document).ready(function () {
+          const modal = $('#success-modal');
+          modal.modal('show');
+          setTimeout(() => modal.modal('hide'), 2500);
+        });
+      </script>
+  ";
+  } ?>
+
 </main>
 <footer>
   <a href="info.php">What is Man.ga?</a>
