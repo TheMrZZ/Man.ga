@@ -12,7 +12,7 @@
   <link href="../css/home.css" rel="stylesheet" type="text/css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="author" content="Florian Ernst"/>
-  <meta name="description" content="Man.ga home page - see the most popular mangas, and the recently udpates ones."/>
+  <meta name="description" content="Man.ga home page - see the most popular mangas, and the recently updated ones."/>
   <meta name="keywords"
         content="Man.ga,manga,mangas,One Piece,Fairy Tale,Tower of God,Shingeki No Kyojin,Attack On Titan,information"/>
 </head>

@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
   <meta name="description" content="Man.ga login page - login to Man.ga to get more features.">
-  <meta name="keywords" content="Man.ga,manga,mangas,login,log-in,signin,sign-in">
+  <meta name="keywords" content="Man.ga,manga,mangas,login,log-in,sign-in,sign-in">
 </head>
 
 <body>

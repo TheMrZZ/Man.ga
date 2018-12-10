@@ -15,8 +15,8 @@
   <link href="../css/main.css" rel="stylesheet" type="text/css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
-  <meta name="description" content="Man.ga informations page about our website.">
-  <meta name="keywords" content="Man.ga,manga,mangas,informations,about our website, what is Man.ga ?">
+  <meta name="description" content="Man.ga information page about our website.">
+  <meta name="keywords" content="Man.ga,manga,mangas,information,about our website, what is Man.ga ?">
 </head>
 
 <body>

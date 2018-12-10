@@ -20,7 +20,8 @@ body.big-contrast {
 }
 
 h1.big-contrast {
-    color: white;
+    mix-blend-mode: difference;
+    color:white;
     text-shadow: 2px 2px black;
 }
 

@@ -39,9 +39,9 @@ input {
 when you enter in the corresponding input*/
 .line {
     position: absolute;
-    width: 0%;
+    width: 0;
     height: 2px;
-    top: 0px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     background: rgb(48, 48, 48);
@@ -72,7 +72,7 @@ in the corresponding input*/
     padding-bottom: 10px;
 }
 
-/*button to submit the informations */
+/*button to submit the information */
 .submit {
     display: inline-block;
     margin-top: 25px;
@@ -127,7 +127,7 @@ p.link > a:before {
     position: absolute;
     width: 100%;
     height: 2px;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     background-color: rgb(32, 32, 32);
 
@@ -136,7 +136,7 @@ p.link > a:before {
     transition: all 0.3s ease-in-out 0s;
 }
 
-/*manage the lenght and visibility 
+/*manage the length and visibility
 of the line when the link is hovered*/
 p.link > a:hover:before {
 
@@ -152,7 +152,6 @@ p.link > a:hover:before {
 /*textarea for the page contact us*/
 textarea {
     margin-top: 20px;
-    border: none;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     position: relative;
     max-width: 600px;
@@ -164,9 +163,4 @@ textarea {
     outline: none;
     overflow: hidden;
     box-sizing: border-box;
-}
-
-h1.big-contrast {
-    color: black;
-    text-shadow: 2px 2px white;
 }

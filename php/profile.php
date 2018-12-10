@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <link href="../css/profile.css" rel="stylesheet" type="text/css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
-  <meta name="description" content="Man.ga profile page - check your informations, change your password and your email.">
+  <meta name="description" content="Man.ga profile page - check your information, change your password and your email.">
   <meta name="keywords" content="Man.ga,manga,mangas,profile,password,email">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

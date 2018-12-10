@@ -2,10 +2,32 @@
   <dictionary name="Florian">
     <words>
       <w>dbname</w>
+      <w>displayers</w>
+      <w>eichiiro</w>
+      <w>fdmvna</w>
+      <w>flexbox</w>
+      <w>josei</w>
+      <w>kodomomuke</w>
+      <w>kyojin</w>
       <w>loggedin</w>
       <w>manga</w>
+      <w>mangagenre</w>
       <w>mangas</w>
+      <w>navbar</w>
+      <w>nbgh</w>
       <w>passwd</w>
+      <w>pskv</w>
+      <w>rrsq</w>
+      <w>scifi</w>
+      <w>searchbar</w>
+      <w>seinen</w>
+      <w>shingeki</w>
+      <w>shojo</w>
+      <w>shonen</w>
+      <w>smartphones</w>
+      <w>spejh</w>
+      <w>toggler</w>
+      <w>xusvfa</w>
     </words>
   </dictionary>
 </component>
