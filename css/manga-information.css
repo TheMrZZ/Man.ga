@@ -91,11 +91,6 @@ dd > p {
     margin: 0;
 }
 
-.min-rating {
-    width: 3em;
-    
-}
-
 #put_comment {
 
     margin-top: 30px;
@@ -123,7 +118,7 @@ textarea {
     box-sizing: border-box;
 }
 
-/*button to submit the informations */
+/*button to submit the information */
 .submit {
     display: inline-block;
     margin-top: 25px;
@@ -142,4 +137,13 @@ textarea {
 .submit:hover {
     background: rgb(92, 92, 92);
     color: #ffffff;
+}
+
+.rate:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
+.star:hover ~ .star {
+    color: #707070;
 }

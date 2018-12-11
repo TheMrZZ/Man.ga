@@ -3,24 +3,29 @@ require "./connect.php";
 
 session_start();
 
-$id = 0;
+$mangaId = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $id = $_POST['id'];
+  $mangaId = $_POST['id'];
 }
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  $id = $_GET['id'];
+  $mangaId = $_GET['id'];
 }
 
 $statement = $conn->prepare('SELECT id, name, author, typeID, status, description FROM manga WHERE id = :id');
-$statement->bindParam(':id', $id);
+$statement->bindParam(':id', $mangaId);
 
-$statement->execute();
+if (!$statement->execute()) {
+  echo 'Error ' . $statement->errorCode() . ':';
+  var_dump($statement->errorInfo());
+  exit();
+}
 $manga = $statement->fetch();
-/*
+
 if (empty($manga)) {
   header('Location: 404.html');
+  exit();
 }
-*/
+
 
 $type = ucwords($conn->query('SELECT name FROM type WHERE id = ' . $manga['typeID'])->fetch()['name']);
 
@@ -53,18 +58,50 @@ $imageID = $manga['id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Comment form
   if ($_POST['form'] == 'send-comment') {
-    $stmt = $conn->prepare("INSERT INTO comment (userID, mangaID, comment) VALUES (:usid, :manid , :com)");
+    $stmt = $conn->prepare("INSERT INTO comment (userID, mangaID, comment) VALUES (:userId, :manid , :com)");
 
-    $usid = $_SESSION['id'];
-    $manid = $id;
+    $userId = $_SESSION['id'];
     $com = $_POST['content'];
 
-    $stmt->bindParam(':usid', $_SESSION['id']);
-    $stmt->bindParam(':manid', $id);
+    $stmt->bindParam(':userId', $_SESSION['id']);
+    $stmt->bindParam(':id', $mangaId);
     $stmt->bindParam(':com', $com);
 
     if ($stmt->execute()) {
       header("location: manga-information.php?id=" . $manga['id']);
+    } else {
+      echo "Something went wrong. Please try again later.<br>";
+      echo "Error " . $stmt->errorCode() . ":<br>";
+      var_dump($stmt->errorInfo());
+      exit();
+    }
+  }
+
+  if ($_POST['form'] == 'remove-rating') {
+    // No SQL injection possible with mangaID, since we check (with a prepared statement) at the beginning that the id
+    // does match a manga in the database. So any id which is not the number of a manga is not possible.
+    $stmt = $conn->prepare("DELETE FROM rating WHERE userID = " . $_SESSION['id'] . " AND mangaID = $mangaId");
+
+    if ($stmt->execute()) {
+      header('Location: ' . $_SERVER['PHP_SELF'] . "?id=$mangaId");
+      exit();
+    } else {
+      echo "Something went wrong. Please try again later.<br>";
+      echo "Error " . $stmt->errorCode() . ":<br>";
+      var_dump($stmt->errorInfo());
+      exit();
+    }
+  }
+
+  if ($_POST['form'] == 'add-rating') {
+    // No SQL injection possible with mangaID, since we check (with a prepared statement) at the beginning that the id
+    // does match a manga in the database. So any id which is not the number of a manga is not possible.
+    $stmt = $conn->prepare("INSERT INTO rating (mangaID, userID, rating) VALUES ('$mangaId', '" . $_SESSION['id'] . "', :rating)");
+    $stmt->bindParam(':rating', $_POST['rating']);
+
+    if ($stmt->execute()) {
+      header('Location: ' . $_SERVER['PHP_SELF'] . "?id=$mangaId");
+      exit();
     } else {
       echo "Something went wrong. Please try again later.<br>";
       echo "Error " . $stmt->errorCode() . ":<br>";
@@ -122,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <dd><?php echo $genres ?></dd>
         <dt>Rating</dt>
         <dd>
-          <p title="Average Rating">&star; <?php echo $rating ?></p>
+          <p title="Average Rating">&starf; <?php echo $rating ?></p>
           <p title="Number of votes"> &#128483; <?php echo $number ?></p>
         </dd>
         <dt>Your Rating</dt>
@@ -132,11 +169,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               class="star"></span>
 
           <?php
-
           if (empty($yourRating)) {
-            echo "(Not rated yet)";
+            echo "<span class='rate'>";
+            for ($i = 1; $i <= 5; $i++) {
+              echo "<span class='star' data-rating='$i'>&starf;</span>";
+            }
+            echo "</span>";
+
           } else {
-            echo $yourRating;
+            echo $yourRating . "&starf; - <a href='javascript:removeRating()'>Remove rating</a>";
           }
           ?>
         </dd>
@@ -197,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     -->
       <div>
-        <p class="label-txt"><label for="content">ENTER YOUR CONTENT</label></p>
+        <p class="label-txt"><label for="content">Comment:</label></p>
         <textarea name="content" id="content" rows="15" cols="10" placeholder="Write here" required></textarea><br/>
       </div>
       <!--suppress HtmlFormInputWithoutLabel -->
@@ -233,6 +274,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             h1.classList.toggle('big-contrast');
         }
     }
+
+    function removeRating() {
+        const form = $(
+            '<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">' +
+            '<input type="text" name="form" value="remove-rating" hidden/>' +
+            '<input type="number" name="id" value="<?php echo $mangaId; ?>" hidden/>' +
+            '</form>'
+        );
+        $('body').append(form);
+        form.submit();
+    }
+
+    $('.star').click(function () {
+        const form = $(
+            '<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">' +
+            '<input type="number" name="rating" value="' + this.dataset.rating + '" hidden/>' +
+            '<input type="text" name="form" value="add-rating" hidden/>' +
+            '<input type="number" name="id" value="<?php echo $mangaId; ?>" hidden/>' +
+            '</form>'
+        );
+        $('body').append(form);
+        form.submit();
+    });
 </script>
 </body>
 
