@@ -58,13 +58,13 @@ $imageID = $manga['id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Comment form
   if ($_POST['form'] == 'send-comment') {
-    $stmt = $conn->prepare("INSERT INTO comment (userID, mangaID, comment) VALUES (:userId, :manid , :com)");
+    $stmt = $conn->prepare("INSERT INTO comment (userID, mangaID, comment) VALUES (:userId, :mangaId , :com)");
 
     $userId = $_SESSION['id'];
     $com = $_POST['content'];
 
     $stmt->bindParam(':userId', $_SESSION['id']);
-    $stmt->bindParam(':id', $mangaId);
+    $stmt->bindParam(':mangaId', $mangaId);
     $stmt->bindParam(':com', $com);
 
     if ($stmt->execute()) {
@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Man.ga - One Piece</title>
+  <title>Man.ga - <?php echo $manga['name'] ?></title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous"/>
@@ -127,8 +127,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link href="../css/manga-information.css" rel="stylesheet" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Florian Ernst">
-  <meta name="description" content="Man.ga manga information - get the latest information on the manga One Piece.">
-  <meta name="keywords" content="Man.ga,manga,mangas,latest,information,one,piece,One Piece">
+  <meta name="description" content="Man.ga manga information - get the latest information on the manga <?php echo $manga['name'] ?>.">
+  <meta name="keywords" content="Man.ga,manga,mangas,latest,information,<?php echo $manga['name'] ?>">
 </head>
 
 <body>
@@ -176,8 +176,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             echo "</span>";
 
-          } else {
-            echo $yourRating . "&starf; - <a href='javascript:removeRating()'>Remove rating</a>";
+          } elseif (!empty($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+              echo $yourRating . "&starf; - <a href='javascript:removeRating()'>Remove rating</a>";
+          }
+          else {
+            echo "<a href='./login.php'>Log-in to rate this manga!</a>";
           }
           ?>
         </dd>
@@ -225,28 +228,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   </section>
   <section id=put_comment>
-    <form class="sign" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-      <h2 class="login">Let your comment</h2>
-      <!--
-      <div>
-        <p class="label-txt"><label for="subject">RATING</label></p>
-        <p>
-          <label>
-            <input class="min-rating" name="rating" type="number" min="0" max="5" value="0">
-          </label> stars
-        </p>
-      </div>
-    -->
-      <div>
-        <p class="label-txt"><label for="content">Comment:</label></p>
-        <textarea name="content" id="content" rows="15" cols="10" placeholder="Write here" required></textarea><br/>
-      </div>
-      <!--suppress HtmlFormInputWithoutLabel -->
-      <input type="number" value="<?php echo $manga['id']; ?>" name="id" hidden>
-      <!--suppress HtmlFormInputWithoutLabel -->
-      <input type="text" name="form" value="send-comment" hidden>
-      <button type="submit" id="submit" class="submit">Send</button>
-    </form>
+    <?php
+    if (empty($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
+      echo "<a href='./login.php'>Log-in to comment this manga!</a>";
+    }
+    else {
+      echo "
+        <form class=\"sign\" method=\"POST\" action=\"" . $_SERVER['PHP_SELF'] . "\">
+        <h2 class=\"login\">Let your comment</h2>
+        <div>
+          <p class=\"label-txt\"><label for=\"content\">Comment:</label></p>
+          <textarea name=\"content\" id=\"content\" rows=\"15\" cols=\"10\" placeholder=\"Write here\" required></textarea><br/>
+        </div>
+        <!--suppress HtmlFormInputWithoutLabel -->
+        <input type=\"number\" value=\"" . $manga['id'] . "\" name=\"id\" hidden>
+        <!--suppress HtmlFormInputWithoutLabel -->
+        <input type=\"text\" name=\"form\" value=\"send-comment\" hidden>
+        <button type=\"submit\" id=\"submit\" class=\"submit\">Send</button>
+      </form>
+      ";
+    }
+    ?>
   </section>
 </main>
 

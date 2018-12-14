@@ -36,7 +36,7 @@
     <ol class="manga-list">
       <?php
       require './connect.php';
-      $mangaIDsByRating = $conn->query('SELECT mangaID FROM average_rating ORDER BY avgRating LIMIT 5')->fetchAll();
+      $mangaIDsByRating = $conn->query('SELECT mangaID FROM average_rating ORDER BY avgRating DESC LIMIT 5')->fetchAll();
 
       foreach ($mangaIDsByRating as $mangaID) {
         $manga = $conn->query("SELECT id, name FROM manga WHERE manga.id = " . $mangaID['mangaID'])->fetch();
